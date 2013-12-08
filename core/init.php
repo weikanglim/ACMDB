@@ -25,8 +25,8 @@ $GLOBALS['config'] = array(
 	'private' => array(
 			'home' => '/index.php',
 			'profile' => '/profile.php',
-			'SIG Groups' => "/siggroups/index.php",
-			'events' => "/events/index.php",
+			'SIG Groups' => "/user/siggroups/index.php",
+			'events' => "/user/events/index.php",
 			'logout' => '/logout.php',
 	),
 	'admin' => array(
@@ -36,17 +36,25 @@ $GLOBALS['config'] = array(
 			'companies' => '/admin/companies/index.php'
 	),
 	'moderator' => array(
-			'My Sig Group' => '/moderator/siggroups/index.php'
+			'My Sig Groups' => '/moderator/siggroups/index.php'
 	)
 );
 
 
 spl_autoload_register(function($class) {
-	require_once $_SERVER['DOCUMENT_ROOT'] . "/classes/" . $class . '.php';
+	if(file_exists($_SERVER['DOCUMENT_ROOT'] . "/classes/" . $class . '.php')){
+		require_once $_SERVER['DOCUMENT_ROOT'] . "/classes/" . $class . '.php';
+	} else if(file_exists($_SERVER['DOCUMENT_ROOT'] . "/classes/views/" . $class . '.php')){
+		require_once $_SERVER['DOCUMENT_ROOT'] . "/classes/views/" . $class . '.php';
+	} else{
+		require_once $_SERVER['DOCUMENT_ROOT'] . "/classes/controller/" . $class . '.php';
+	}
 });
 
 require_once $base . "/functions/sanitize.php";
 require_once $base . "/functions/header.php";
+require_once $base . "/functions/misc.php";
+
 
 if(Cookie::exists(Config::get('remember/cookie_name')) && !Session::exists(Config::get('session/session_name'))){
 	$hash = Cookie::get(Config::get('remember/cookie_name'));
@@ -58,3 +66,5 @@ if(Cookie::exists(Config::get('remember/cookie_name')) && !Session::exists(Confi
 		$user->login();
 	}
 }
+
+echo "<h1>ACM DB Web Interface</h1>";

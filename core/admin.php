@@ -9,5 +9,5 @@ if($user->isLoggedIn()){
 		
 	}
 } else {
-	Redirect::to('login.php');
+	Redirect::to('/login.php');
 }

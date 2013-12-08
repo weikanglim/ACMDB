@@ -116,10 +116,10 @@ if(Input::exists('post')){
 <html>
 <head>
 <title>Users</title>
-<link rel="stylesheet" type="text/css" href="/records.css">
-<link rel="stylesheet" type="text/css" href="/table.css">
-</head>
-<body>
+<link rel="stylesheet" type="text/css" href="/css/records.css">
+<link rel="stylesheet" type="text/css" href="/css/table.css">
+<link rel="stylesheet" type="text/css" href="/css/base.css">
+</head><body>
 <div>
 <?php 
 	echo $error;

@@ -35,7 +35,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>GIT DEPLOYMENT SCRIPT</title>
-</head>
+<link rel="stylesheet" type="text/css" href="/css/base.css">
 <body style="background-color: #000000; color: #FFFFFF; font-weight: bold; padding: 0 10px;">
 <pre>
  .  ____  .    ____________________________

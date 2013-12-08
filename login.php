@@ -46,9 +46,8 @@ if(Input::exists()){
 <head>
 <title>ACM Member Login</title>
 <link rel="stylesheet" type="text/css" href="table.css">
-</head>
-
-<body>
+<link rel="stylesheet" type="text/css" href="/css/base.css">
+</head><body>
 <?php if($errors){foreach($errors as $error){ echo $error . '<br>';};}?>
 		<form action="" method="post">
 		<table>
@@ -63,8 +62,8 @@ if(Input::exists()){
 			<tr>
 				<td><input type="checkbox" name="remember" id="remember"> Remember me</td>
 			</tr>
+			<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 			<tr>
-				<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 				<td><input type="submit" value="Login"></td>
 			</tr>
 		</table>

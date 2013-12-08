@@ -7,6 +7,10 @@ $user = new User ();
 $primary_key = 'uid';
 $chgpwd = false;
 $error = "";
+$profileFields = array('firstname' => $user->data()->firstname, 
+					   'lastname' => $user->data()->lastname,
+					   'email' =>$user->data()->email,
+					   'phone' => $user->data()->phone);
 
 if (! $user->isLoggedIn ()) {
 	Redirect::to ( 'login.php' );
@@ -31,7 +35,8 @@ if (! $user->isLoggedIn ()) {
 							array('uid', Input::get('user')), 
 							array('password' => $hashInfo['hash'],
 								  'salt' => $hashInfo['salt']))){
-						Session::flash('chg_pwd', 'Password changed successfully.');
+						Session::flash('home', 'Password changed successfully.');
+						Redirect::to('/index.php');
 					} else {
 						$error = "Error in changing password.";
 					}
@@ -45,15 +50,9 @@ if (! $user->isLoggedIn ()) {
 		}
 		
 		
-		if (Token::check ( Input::get ( Config::get('session/token_name' ) ) )) {
+		if (Token::check (Input::get('update_token'), 'update_token' )) {
 			$validate = new Validate ();
-			$validation = $validate->check ( $_POST, array (
-					'username' => array (
-							'required' => true,
-							'min' => 4,
-							'max' => 20,
-							'unique' => array('users', 'onUpdate')
-					),
+			$validation = $validate->check ( $_POST, array(
 					'firstname' => array (
 							'required' => true 
 					),
@@ -71,7 +70,6 @@ if (! $user->isLoggedIn ()) {
 			
 			if ($validation->passed ()) {
 				if ($user->update ( array (
-						'username' => Input::get ( 'username' ),
 						'firstname' => Input::get ( 'firstname' ),
 						'lastname' => Input::get ( 'lastname' ),
 						'email' => Input::get ( 'email' ),
@@ -98,9 +96,10 @@ if (! $user->isLoggedIn ()) {
 <html>
 <head>
 <title>Update Profile</title>
-<link rel="stylesheet" type="text/css" href="table.css">
-</head>
+<link rel="stylesheet" type="text/css" href="/css/table.css">
+<link rel="stylesheet" type="text/css" href="/css/base.css">
 
+</head>
 <body>
 	<h2>Update Profile</h2>
 	<div><?php 
@@ -112,36 +111,12 @@ if (! $user->isLoggedIn ()) {
 			} 
 			$fields = array('password' => '', 'new_password' => '', 'new_password_again' => '');
 			$format = array('password' => 'Old Password', 'new_password' => 'New Password', 'new_password_again' => 'Confirm New Password');
-			?>
-			<form action="" method="post">
-				<?php echo Format::record($fields, $format, Input::get('user'), false); ?>
-				<input type="hidden" name="pwd_token"
-			value="<?php echo Token::generate('pwd_token'); ?>"> <input
-			type="hidden" name="user" value="<?php echo Input::get('user'); ?>">
-		<input type="submit" value="Submit">
-	</form>
-
-	<form action="">
-		<input type="submit" value="Back">
-	</form>
-		<?php 
+				$pwdForm = new PasswordForm($fields, $primary_key);
+				echo $pwdForm->render(); 
 	}else{
-		?>
-	<form action="" method="post">
-			<?php
-			echo Format::record ( $user->data (), array (
-					'username' => 'Username',
-					'firstname' => 'First Name',
-					'lastname' => 'Last Name',
-					'email' => 'Email',
-					'phone' => 'Phone' 
-			) ,$primary_key);
+			$profileForm = new ProfileForm($profileFields, $primary_key);
+			echo $profileForm->render(false);
 			?>
-			
-			<input type="submit" value="Update profile"> <input type="hidden"
-			name="token" value="<?php echo Token::generate(); ?>">
-	</form>
-
 	<form action="" method="get">
 		<input type="hidden" name="chgpwd" value="1"> <input type="hidden"
 			name="user" value="<?php echo $user->data()->uid ?>"> <input

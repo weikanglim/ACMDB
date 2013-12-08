@@ -6,19 +6,18 @@ require_once $base . "/core/public.php";
 	
 $table = 'users';
 $id = 'uid';
+$error = "";
 $headers = DB::getInstance()->get('information_schema.columns', array('table_name' , '=', "{$table}"), array('column_name'))->results();
 $fields = array();
-$fields[] = 'password_again';
-$exclude = array($id, "salt", 'accountcreated', 'accountexpires', 'userlevel');
-$error = "";
-
-foreach($headers as $header){
-	$column = $header->column_name;
-	if(!in_array($column, $exclude)){
-		$fields[] = $column;
-	}
-}
-
+$fields = array(
+				'username' => 'Username',
+				'password' => 'Password',
+				'password_again' => 'Confirm Password',
+				'firstname' => 'First Name',
+				'lastname' => 'Last Name',
+				'email' => 'Email',
+				'phone' => 'Phone',
+			);
 
 if(Input::exists('post')){
 	$validate = new Validate ();
@@ -83,31 +82,21 @@ if(Input::exists('post')){
 <html>
 <head>
 	<title>Registration</title>
-<link rel="stylesheet" type="text/css" href="/records.css">
-<link rel="stylesheet" type="text/css" href="/table.css">
-</head>
-<body>
+<link rel="stylesheet" type="text/css" href="/css/records.css">
+<link rel="stylesheet" type="text/css" href="/css/table.css">
+<link rel="stylesheet" type="text/css" href="/css/base.css">
+</head><body>
 <div>
 	<?php echo $error; ?>
 </div>
 	<div>
-		<form action="" method="post">
 			<?php
-			echo Format::create ($fields, array(
-				'username' => 'Username',
-				'password' => 'Password',
-				'password_again' => 'Confirm Password',
-				'firstname' => 'First Name',
-				'lastname' => 'Last Name',
-				'email' => 'Email',
-				'phone' => 'Phone'
-			));
+				$register = new CreateForm($fields);
+				echo $register->render();
 			?>
 			<input type="hidden" name="fields"
 				value="<?php echo implode(":", $fields);?>">
 				<input type="submit" value="Register">
-
-		</form>
 	</div>
 </body>
 </html>

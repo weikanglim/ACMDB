@@ -9,15 +9,14 @@ $table = 'users';
 $id = 'uid';
 $edit = false;
 $headers = DB::getInstance()->get('information_schema.columns', array('table_name' , '=', "{$table}"), array('column_name'))->results();
-$fields = array();
-$exclude = array($id, "salt", 'accountcreated', 'accountexpires');
-
-foreach($headers as $header){
-	$column = $header->column_name;
-	if(!in_array($column, $exclude)){
-		$fields[] = $column;
-	}
-}
+$fields = array(
+				'username' => 'Username',
+				'password' => 'Password',
+				'firstname' => 'First Name',
+				'lastname' => 'Last Name',
+				'email' => 'Email',
+				'phone' => 'Phone'
+			);
 
 
 if(Input::exists('post')){
@@ -79,34 +78,15 @@ if(Input::exists('post')){
 ?>
 <html>
 <head>
-	<title>Registration</title>
-<link rel="stylesheet" type="text/css" href="/records.css">
-<link rel="stylesheet" type="text/css" href="/table.css">
-</head>
-<body>
-	<div>
-		<form action="" method="post">
+	<title>Create New User</title>
+<link rel="stylesheet" type="text/css" href="/css/table.css">
+<link rel="stylesheet" type="text/css" href="/css/base.css">
+	<link rel="stylesheet" type="text/css" href="/css/base.css">
+</head><body>
+<h3>Create New User</h3>
 			<?php
-			echo Format::create ($fields, array(
-				'username' => 'Username',
-				'password' => 'Password',
-				'firstname' => 'First Name',
-				'lastname' => 'Last Name',
-				'email' => 'Email',
-				'phone' => 'Phone'
-			));
+				 $create = new CreateForm($fields);
+				 echo $create->render();
 			?>
-			<input type="hidden" name="fields"
-				value="<?php echo implode(":", $fields);?>">
-				<input type="submit" value="Register">
-
-		</form>
-	</div>
-
-	<div>
-		<form action="">
-			<input type="submit" value="Clear">
-		</form>
-	</div>
 </body>
 </html>

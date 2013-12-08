@@ -33,7 +33,6 @@ class DB {
 					$x++;
 				}
 			}
-			
 			if($this->_query->execute()){
 				$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
 				$this->_count = $this->_query->rowCount();
@@ -55,16 +54,22 @@ class DB {
 	
 	public function action($action, $table, $where = array()){
 		if(count($where) === 3){
-			$operators = array('=' , '>', '<', '>=' , '<=');
+			$operators = array('=' , '>', '<', '>=' , '<=', 'IN');
 			
 			$field 		= $where[0];
 			$operator 	= $where[1];
 			$value 		= $where[2];
 			
 			if(in_array($operator, $operators)){
-				$sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
+				if($operator == 'IN'){
+					$sql = "{$action} FROM {$table} WHERE {$field} IN (" . implode("," , $value) . ")";
+					$params = null;
+				} else {
+					$sql = "{$action} FROM {$table} WHERE {$field} {$operator} ?";
+					$params = array($value);
+				}
 				
-				if(!$this->query($sql, array($value))->error()){
+				if(!$this->query($sql, $params)->error()){
 					return $this;
 				}
 			}
@@ -74,7 +79,15 @@ class DB {
 			if(!$this->query($sql)->error()){
 				return $this;
 			}
-		} else{
+		} else if (count($where === 1)){
+			$order = $where[0];			
+			$sql = "{$action} FROM {$table} ORDER BY $order";
+					
+			if(!$this->query($sql)->error()){
+				return $this;
+			}
+		} 
+		else{
 			$this->_error = true;
 		}
 		return $this;
@@ -135,6 +148,15 @@ class DB {
 			}
 		}
 		return false;
+	}
+	
+	public function getResults($str){
+		$results = $this->_results;
+		$return = array();
+		foreach($results as $result){
+			$return[] = $result->{$str};
+		}
+		return $return;
 	}
 	
 	public function error(){
