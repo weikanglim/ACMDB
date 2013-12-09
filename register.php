@@ -7,7 +7,6 @@ require_once $base . "/core/public.php";
 $table = 'users';
 $id = 'uid';
 $error = "";
-$headers = DB::getInstance()->get('information_schema.columns', array('table_name' , '=', "{$table}"), array('column_name'))->results();
 $fields = array();
 $fields = array(
 				'username' => 'Username',
@@ -61,7 +60,7 @@ if(Input::exists('post')){
 			case 'phone' : 
 				if(!Input::get('phone')){ break;}
 				else{ $fieldAndValue["phone"] = str_replace('-','',Input::get("phone")); }break;
-			case 'permissions' : break;
+			case 'userlevel' : break;
 			default : $fieldAndValue["{$field}"] = Input::get("{$field}"); break;	
 			}
 		}

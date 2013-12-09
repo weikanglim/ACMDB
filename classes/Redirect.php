@@ -2,7 +2,7 @@
 class Redirect{
 	
 	public static function to($location=null){
-		$base = Config::get('base')[0];
+		$base = $_SERVER['DOCUMENT_ROOT'];
 		if($location){
 			if(is_int($location)){
 				switch($location){

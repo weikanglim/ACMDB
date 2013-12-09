@@ -35,7 +35,7 @@ class EventsTable extends UserTable {
 						} else {
 							$endOfRow = "<td>
 								<form action=\"\" method=\"post\" align=\"center\" onsubmit=\"return confirmLeave();\">
-								<input type=\"submit\" value=\"Cancel RSVP\">
+								<input type=\"submit\" value=\"Cancel\">
 								<input type=\"hidden\" name=\"leave\" value=\"{$eid}\">
 								<input type=\"hidden\" name=\"{$token_name}\" value=\"{$token}\">
 								</form></td>";
