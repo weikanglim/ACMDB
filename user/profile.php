@@ -13,7 +13,7 @@ $profileFields = array('firstname' => $user->data()->firstname,
 					   'phone' => $user->data()->phone);
 
 if (! $user->isLoggedIn ()) {
-	Redirect::to ( 'login.php' );
+	Redirect::to ( '\login.php' );
 } else {
 	if (Input::exists ('post')) {
 		if(Input::get('pwd_token')){
@@ -76,7 +76,7 @@ if (! $user->isLoggedIn ()) {
 						'phone' => Input::get ( 'phone' )
 				) )) {
 					Session::flash ( 'home', 'User details updated succesfully.' );
-					Redirect::to('index.php');
+					Redirect::to('\index.php');
 				} else {
 					$error = $user->errors ();
 				}
