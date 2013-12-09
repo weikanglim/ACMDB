@@ -26,7 +26,6 @@ if(Input::exists('post')){
 					'required' => true,
 					'unique' => array('organizers', 'onCreate')
 				)
-// 				'meeting_time' => 'Meeting Time'
 	) );
 		
 	if ($validation->passed ()) {
@@ -43,7 +42,6 @@ if(Input::exists('post')){
 			Session::flash ( 'addSuccess', 'Record added succesfully.' );
 			Redirect::to("index.php");
 		} else {
-			var_dump($db->error());
 			echo 'Error in insertion.';
 		}
 	} else {

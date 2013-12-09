@@ -66,17 +66,15 @@ if(Input::exists('post')){
 	if(Input::get('ptoken')){
 		if(Token::check(Input::get('ptoken'), 'participate_token')){
 			if(Input::get('join')){
-				echo 'join';
 				if(DB::getInstance()->insert('users_siggroups', array( 'uid' => $uid, 'gid' => Input::get('join')))){
 					Session::flash('participate', 'You have joined the group.');
 					Redirect::to(Config::get('private/SIG Groups'));
 				}
 			} else if(Input::get('leave')){
-				if(DB::getInstance()->query("DELETE FROM USERS_SIGGROUPS WHERE UID = ? AND GID = ?", array($uid, Input::get('leave')))){
+				if(DB::getInstance()->query("DELETE FROM USERS_SIGGROUPS WHERE UID = ? AND GID = ?", array($uid, Input::get('leave')))){					
 					if(DB::getInstance()->query("SELECT * FROM SIGGROUPS WHERE LEADER_ID = ? AND GID = ?", array($uid, Input::get('leave')))->count()){
-						var_dump(DB::getInstance()->update('siggroups', array('gid', Input::get('leave')), array('leader_id' => null)));
-// 						Session::flash('participate', 'You have left the group.');
-// 						Redirect::to(Config::get('private/SIG Groups'));
+						Session::flash('participate', 'You have left the group.');
+						Redirect::to(Config::get('private/SIG Groups'));
 					}
 				}
 			}

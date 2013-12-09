@@ -64,7 +64,6 @@ if(Input::exists('post')){
 			default : $fieldAndValue["{$field}"] = Input::get("{$field}"); break;	
 			}
 		}
-		print_r($fieldAndValue);
 		if ($db->insert($table, $fieldAndValue)) {
 			Session::flash ( 'registered', 'Registration succesful.' );
 			Redirect::to("login.php");
