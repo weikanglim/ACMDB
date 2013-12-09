@@ -5,7 +5,11 @@ class AddEventForm extends CreateForm{
 		parent::__construct($fieldsAndLabels);
 		$this->uid = $uid;
 	}
-	
+	public function generateFooter(){
+		$fields= implode(':' , array_keys ( ( array ) $this->_fieldsAndLabels ) ) ;
+		$this->_footer = "<input type=\"hidden\" name=\"fields\" value=\"{$fields}\"> <div style='margin-top:5px'><input type=\"submit\" value=\"Create\">";
+	}
+
 	public function render(){
 		$this->generateFooter();
 		$output = '<form action="" method="post">';
