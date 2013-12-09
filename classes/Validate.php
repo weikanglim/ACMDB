@@ -52,6 +52,7 @@ class Validate {
 							}
 						break;
 						case 'phone':
+							$value = str_replace('-', '', $value);
 							$regexp = "/^[0-9]{10}$/";
 							if(!preg_match($regexp, $value)){
 								$this->addError("{$item_str} is not a valid phone number.");

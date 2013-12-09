@@ -4,7 +4,8 @@ class EditForm extends Form {
 		   $_primary,
 		   $_formatOptions = array(),
 		   $_scripts,
-		   $_footer;	
+		   $_footer,
+		   $_back;	
 	public function __construct($data, $primary){
 		$this->_data = $data;
 		$this->_primary = $primary;	
@@ -13,7 +14,8 @@ class EditForm extends Form {
 	public function generateFooter(){
 		$fields= implode(':' , array_keys ( ( array ) $this->_data ) );
 		$this->_footer = "<input type=\"hidden\" name=\"fields\" value=\"{$fields}\"> 
-						  <input type=\"submit\" value=\"Edit\">";
+						  <input type=\"submit\" value=\"Edit\">" .
+						  "<input type='reset' value='Reset'> <a class='alink' href='" . ($back ? $back : 'index.php') . "' style='margin-left:20px'>Back</a>";
 	}
 		
 	public function render($showPassword = true, $back = false){
@@ -49,7 +51,7 @@ class EditForm extends Form {
 			$x ++;
 		}
 		$output .= "</table></div>";
-		$output .= $this->_footer . "<input type='reset' value='Reset'><a class='alink' href='" . ($back ? $back : 'index.php') . "' style='margin-left:20px'>Back</a></form></div>";
+		$output .= $this->_footer . "</form></div>";
 		
 		return $output;
 	}

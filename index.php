@@ -26,13 +26,13 @@ if(!$dbo->error() && $dbo->count()){
 	$headers = array_reverse($headers);
 }
 
+unset($headers['0']);
 ?>
 
 <html>
 <head>
 <title>ACM Member Page</title>
 <link rel="stylesheet" type="text/css" href="/css/userTable.css">
-<link rel="stylesheet" type="text/css" href="/css/base.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 <body>
 <pre class="cow">

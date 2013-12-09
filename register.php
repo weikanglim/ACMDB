@@ -58,7 +58,9 @@ if(Input::exists('post')){
 			switch($field){
 			case 'password': $fieldAndValue["{$field}"] = $hashInfo['hash']; break;
 			case 'password_again': break;
-			case 'phone' : if(!Input::get('phone')) break;
+			case 'phone' : 
+				if(!Input::get('phone')){ break;}
+				else{ $fieldAndValue["phone"] = str_replace('-','',Input::get("phone")); }break;
 			case 'permissions' : break;
 			default : $fieldAndValue["{$field}"] = Input::get("{$field}"); break;	
 			}
@@ -86,17 +88,15 @@ if(Input::exists('post')){
 <link rel="stylesheet" type="text/css" href="/css/table.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 </head><body>
+<h3>Registration</h3>
 <div>
 	<?php echo $error; ?>
 </div>
 	<div>
 			<?php
-				$register = new CreateForm($fields);
+				$register = new RegisterForm($fields);
 				echo $register->render();
 			?>
-			<input type="hidden" name="fields"
-				value="<?php echo implode(":", $fields);?>">
-				<input type="submit" value="Register">
 	</div>
 </body>
 </html>

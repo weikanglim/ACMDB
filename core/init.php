@@ -24,9 +24,10 @@ $GLOBALS['config'] = array(
 	),
 	'private' => array(
 			'home' => '/index.php',
-			'profile' => '/profile.php',
+			'profile' => '/user/profile.php',
 			'SIG Groups' => "/user/siggroups/index.php",
 			'events' => "/user/events/index.php",
+			'transactions' => "/user/transactions.php",
 			'logout' => '/logout.php',
 	),
 	'admin' => array(

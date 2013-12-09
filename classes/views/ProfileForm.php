@@ -6,7 +6,7 @@ class ProfileForm extends EditForm{
 	
 	public function generateFooter(){
 		$token = Token::generate('update_token');
-		$this->_footer = '<input type="submit" value="Update profile"> <input type="hidden"
+		$this->_footer = '<input type="submit" value="Update profile"> <input type="reset" value="Reset"> <input type="hidden"
 			id="update_token" name="update_token" value="' . $token . '">';
 	}
 }
