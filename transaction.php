@@ -9,9 +9,9 @@ if(!Input::exists('post') || !Input::get('vend')){
 $uid = (new User())->data()->uid;
 $vend_info = explode(":", Input::get('vend'));
 $vend_descript = $vend_info[0];
-$vend_value = -$vend_info[1];
+$vend_value = $vend_info[1];
 if(DB::getInstance()->insert('transactions', array(
-	'amount' => $vend_value,
+	'amount' => -$vend_value,
 	'description' => $vend_descript,
 	'uid' => $uid
 ))){

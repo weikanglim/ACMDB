@@ -119,7 +119,11 @@ EOD;
 					
 					if ($this->_edit && $id) { // is primary id and table is clickable
 						// generate a link for editing the value
-						$generated .= "<td><a href=\"{$this->_link}?edit={$id}\">{$value}</a></td>";
+						if(strtolower($field) == 'balance'){
+							$generated .= "<td><a href=\"transacthistory.php?user={$id}\">{$value}</a></td>";
+						} else{
+							$generated .= "<td><a href=\"{$this->_link}?edit={$id}\">{$value}</a></td>";
+						}
 					}else{
 						$generated .= "<td>{$value}</td>";
 					}

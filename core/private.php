@@ -4,8 +4,8 @@ if($user->isLoggedIn()){
 	echo pageHeader('private');
 	if($user->isAdmin()){
 		echo pageHeader('admin');}
-	if($user->isModerator()){
-		echo pageHeader('moderator');
+	if($user->isLeader()){
+		echo pageHeader('leader');
 	}
 } else {
 	Redirect::to("/login.php");

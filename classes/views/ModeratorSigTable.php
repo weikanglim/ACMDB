@@ -88,10 +88,8 @@ $('#select-deselect-all{$this->gid}').click( function(){
 	protected function generateTableFooter(){
 		$token_name = "delete_token{$this->gid}";
 		$token = Token::generate("delete_token{$this->gid}");
-		$add_token = Token::generate("add_token{$this->gid}");
 		$this->_tableFooter .= "<div style='float:left'><form action=\"addMember.php\" method=\"get\">
 		<input type=\"hidden\" name=\"gid\" value=\"{$this->gid}\">
-		<input type=\"hidden\" name=\"add_token{$this->gid}\" id=\"add_token{$this->gid}\" value=\"{$add_token}\">
 		<input type=\"submit\" value=\"Add new\">
 		</form></div>
 		<div><form action='index.php' method='post'>

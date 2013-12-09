@@ -46,7 +46,7 @@ if(!$dbo->error() && $dbo->count()){
 </pre>
 <div class="balance">
 <h3>Balance</h3>
-Your current balance is <?php echo "$ " . $currentBalance; ?>.
+Your current balance is  <?php echo $currentBalance ?>.
 </div>
 <div>
 <h3>Vending</h3>

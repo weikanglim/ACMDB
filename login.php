@@ -45,7 +45,6 @@ if(Input::exists()){
 
 <head>
 <title>ACM Member Login</title>
-<link rel="stylesheet" type="text/css" href="table.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 </head><body>
 <?php if($errors){foreach($errors as $error){ echo $error . '<br>';};}?>

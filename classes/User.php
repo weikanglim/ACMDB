@@ -7,7 +7,7 @@ class User {
 			$_error,
 			$_isLoggedIn = false,
 			$_isAdmin = false,
-			$_isModerator;
+			$_isLeader = false;
 	
 	/**
 	 * 
@@ -26,12 +26,12 @@ class User {
 					$this->_isLoggedIn = true;
 					if($this->data()->userlevel == 2){
 						$this->_isAdmin = true;
-					} else{
-						$uid = $this->data()->uid;
-						$check = $this->_db->get('siggroups', array('leader_id' , '=' , $uid));
-						if($check->count()){
-							$this->_isModerator = true;
-						}
+					} 
+					
+					$uid = $this->data()->uid;
+					$check = $this->_db->get('siggroups', array('leader_id' , '=' , $uid));
+					if($check->count()){
+						$this->_isLeader = true;
 					}
 				}
 			}
@@ -143,8 +143,8 @@ class User {
 	}
 	
 	
-	public function isModerator(){
-		return $this->_isModerator;
+	public function isLeader(){
+		return $this->_isLeader;
 	}
 	
 	public function setError($error){

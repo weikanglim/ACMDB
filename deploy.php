@@ -16,7 +16,6 @@
 		'git submodule sync',
 		'git submodule update',
 		'git submodule status',
-		'cp -Ruf * /var/www'
 	);
  
 	// Run the commands for output

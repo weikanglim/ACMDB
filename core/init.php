@@ -35,8 +35,9 @@ $GLOBALS['config'] = array(
 			'SIG Groups' => '/admin/siggroups/index.php',
 			'companies' => '/admin/companies/index.php'
 	),
-	'moderator' => array(
-			'My Sig Groups' => '/moderator/siggroups/index.php'
+	'leader' => array(
+			'My Sig Groups' => '/leader/siggroups/index.php',
+			'Create Event' => '/leader/siggroups/addEvents.php'
 	)
 );
 

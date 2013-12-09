@@ -40,7 +40,7 @@ abstract class Form {
 					'Thursday',
 					'Friday' 
 			);
-		}
+		} 
 		return $options;
 	}
 	

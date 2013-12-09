@@ -36,6 +36,13 @@ $validation = array (
 
 $control = new AdminTableController($dbo, $table, $edit_table, $primary_key, $validation);
 $control->runController();
+
+if($control->edit()){
+	$user = DB::getInstance()->get('users_view', array('uid', '=', Input::get('edit')))->first();
+	echo "<h3>User Information for $user->name</h3>";
+} else{
+	echo "<h3>Users</h3>";
+}
 ?>
 
 <html>
@@ -48,7 +55,6 @@ $control->runController();
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 </head><body>
-<h3>Users</h3>
 <div>
 <?php 
 	echo $control->error();
