@@ -73,11 +73,10 @@ class AdminTableController{
 				$fields = explode(":", Input::get('fields'));
 				$fieldAndValue = array();
 				foreach($fields as $field){
-					if(Input::get($field) && $field !== $this->primary_key){
+					if(Input::get($field)  && $field !== $this->primary_key && $field !== 'userlevel'){
 						$fieldAndValue["{$field}"] = Input::get("{$field}");
 					}
 				}
-				
 				if ($this->dbo->update($this->edit_table, array($this->primary_key, $this->primary_value), $fieldAndValue)) {
 					Session::flash ( 'editSuccess', 'Record updated succesfully.' );
 					Redirect::to("index.php");
