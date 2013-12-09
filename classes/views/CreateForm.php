@@ -23,6 +23,7 @@ class CreateForm extends Form {
 		$x = 0;
 		$type = "";
 		foreach ( $fields as $field=>$label ) {
+			if($field !== 'userlevel'){
 				if (substr_count ( $field, 'password' )) {
 					$type = "password";
 				} else {
@@ -33,9 +34,10 @@ class CreateForm extends Form {
 					$info = "<td>" . Selections::renderHTML($this->_specials[strtolower($field)], $field, $this->getOptions(strtolower($field))) . "</td></tr>";
 				} else if(in_array(strtolower($field), array_keys($this->_long_input))){
 					$info = "<td><input class=\"long-input\" type=\"{$type}\" name=\"{$field}\" id=\"{$field}\" value=\"\"></td></tr>";
-			}
-			else{
-				$info = "<td><input class=\"input\" type=\"{$type}\" name=\"{$field}\" id=\"{$field}\" value=\"\"></td></tr>";
+				}
+				else{
+					$info = "<td><input class=\"input\" type=\"{$type}\" name=\"{$field}\" id=\"{$field}\" value=\"\"></td></tr>";
+				}
 			}
 	
 				$output = $output . $label . $info;

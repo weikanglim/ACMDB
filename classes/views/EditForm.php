@@ -35,7 +35,7 @@ class EditForm extends Form {
 			$field_str = Format::nice($field);
 			$label = "<tr><td>{$field_str}</td>";
 			
-			if ($field == $primary) {
+			if ($field == $primary || $field == 'userlevel') {
 				$info = "<td><strong>{$value}</strong></td>";
 			} else if(in_array(strtolower($field), array_keys($this->_specials))){
 				$info = "<td>" . Selections::renderHTML($this->_specials[strtolower($field)], $field, $this->getOptions(strtolower($field)), $value) . "</td></tr>";
