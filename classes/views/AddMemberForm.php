@@ -24,7 +24,7 @@ class AddMemberForm extends Form {
 		$info = "<td>" . Selections::renderHTML(Selections::DropDown, 'memberName', $this->_options) . "</td></tr>";
 		$output .=  ($label . $info);
 		$output .= "</table></div>";
-		$output .= $this->_footer . "<a href='index.php' style='margin-left:20px'>Back</a></form></div>";
+		$output .= $this->_footer . "<a class='alink' href='index.php' style='margin-left:20px'>Back</a></form></div>";
 		
 		return $output;
 	}
