@@ -41,6 +41,34 @@ class Selections {
 		}
 	}
 	
+	public static function dropdownOnChange($name, $options = null, $default = null){
+		$html = "<select name = $name onchange=\"this.form.submit()\">";
+		if(!$options){
+			return false;
+		}
+		
+		if(Selections::isAssoc($options)){
+			foreach($options as $option => $value){
+				if($default && $value == $default){
+					$html .= self::defaultOption($option, $value);
+				} else {
+					$html .= self::option($option, $value);
+				}
+			}
+		} else {
+			foreach($options as $option){
+				if($default && $option == $default){
+					$html .= self::defaultOption($option);
+				}else {
+					$html .= self::option($option);
+				}
+			}
+		}
+		
+		$html .= "</select>";
+		return $html;
+	}
+	
 	public static function defaultOption($option, $value = null) {
 		if($value){
 			return "<option value =\"{$value}\"  selected=\"selected\"> {$option}</option>";

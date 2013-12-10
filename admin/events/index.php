@@ -2,6 +2,8 @@
 $base = $_SERVER ['DOCUMENT_ROOT'];
 require_once $base . "/core/init.php";
 require_once $base . "/core/admin.php";
+require_once $base . "/core/private.php";
+
 
 echo Session::flash ( 'editSuccess' );
 $table = 'events_view';

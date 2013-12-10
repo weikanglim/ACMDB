@@ -1,16 +1,6 @@
 <?php
 $user = new User();
-if($user->isLoggedIn()){
-	echo pageHeader('private');
-	if($user->isAdmin()){
-		echo pageHeader('admin');
-	}
-	
-	if($user->isLeader()){
-		echo pageHeader('leader');
-	}else {
+if($user->isLeader()){
+}else {
 		Redirect::to(403);
-	}
-} else {
-	Redirect::to('/login.php');
 }

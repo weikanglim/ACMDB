@@ -34,11 +34,13 @@ $GLOBALS['config'] = array(
 			'users' => '/admin/users/index.php',
 			'events' => '/admin/events/index.php',
 			'SIG Groups' => '/admin/siggroups/index.php',
-			'companies' => '/admin/companies/index.php'
+			'companies' => '/admin/companies/index.php',
+			'logout' => '/logout.php',
 	),
 	'leader' => array(
 			'My Sig Groups' => '/leader/siggroups/index.php',
-			'Create Event' => '/leader/siggroups/addEvents.php'
+			'Create Event' => '/leader/siggroups/addEvents.php',
+			'logout' => '/logout.php',
 	)
 );
 

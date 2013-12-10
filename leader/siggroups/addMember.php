@@ -2,6 +2,7 @@
 $base = $_SERVER['DOCUMENT_ROOT'];
 require_once $base . "/core/init.php";
 require_once $base . "/core/leader.php";
+require_once $base . "/core/private.php";
 
 $error = "";
 if(Input::exists('post')){
