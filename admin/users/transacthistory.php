@@ -34,6 +34,23 @@ if(!$dbo->error() && $dbo->count()){
 	$error =  'Error retrieving data.';
 }
 
+if(Input::exists('post')){
+	if(Input::get('paytoken') && Token::check(Input::get('paytoken'), 'paytoken')){
+		$admin = new User();
+		$uid = Input::get('user');
+		$name = $admin->data()->firstname . ' ' . $admin->data()->lastname;
+		if(DB::getInstance()->insert('transactions', array(
+			'amount' => Input::get('amount'),
+			'description' => "Payment authorized by $name.",
+			'uid' => $uid
+		))){
+			Session::flash('paid', 'Payment succeeded.');
+			Redirect::to("transacthistory.php?user=$uid");
+		} else{
+			$error = 'Error with transaction.';
+		}
+	}
+}
 
 ?>
 <html>
@@ -49,13 +66,14 @@ if(!$dbo->error() && $dbo->count()){
 <h3>Transaction history for <?php echo $user->name; ?></h3>
 <div>
 <?php
+echo Session::flash('paid');
 if($error) echo '<div class="ui-state-error ui-corner-all">
 		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span><strong>Error:</strong> ' .$error. '</p> </div>';
 ?>
 </div>
 
 		<?php 
-			$transactionHistory = new UserTable($records, $headers, 'index.php');
+			$transactionHistory = new TransactionTable($records, $headers, 'index.php');
 			echo ($transactionHistory->render());
 		?>
 		<div style="margin-top:3em;"><a class="alink" href="index.php">Back</a></div> 
