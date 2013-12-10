@@ -119,7 +119,8 @@ if(Input::exists('post')){
 <?php 
 echo Session::flash ('editSuccess');
 echo Session::flash ('addSuccess');
-	echo $error;
+	if($error) echo '<div class="ui-state-error ui-corner-all">
+		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span><strong>Error:</strong> ' .$error. '</p> </div>';
 ?>
 </div>
 

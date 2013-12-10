@@ -37,6 +37,8 @@ if(!$dbo->error() && $dbo->count()){
 <html>
 <head>
 <title>Member Transaction History</title>
+	<link rel="stylesheet" media="all" type="text/css"
+	href="/css/jquery-ui-1.10.3.custom.css" />
 <link rel="stylesheet" type="text/css" href="/css/userTable.css">
 <link rel="stylesheet" type="text/css" href="/css/table.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
@@ -46,7 +48,8 @@ if(!$dbo->error() && $dbo->count()){
 <h3>Transaction history for <?php echo $name; ?></h3>
 <div>
 <?php
-echo $error;
+if($error) echo '<div class="ui-state-error ui-corner-all">
+		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span><strong>Error:</strong> ' .$error. '</p> </div>';
 ?>
 </div>
 

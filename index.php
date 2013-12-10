@@ -26,6 +26,8 @@ if(!$dbo->error() && $dbo->count()){
 <html>
 <head>
 <title>ACM Member Page</title>
+	<link rel="stylesheet" media="all" type="text/css"
+	href="/css/jquery-ui-1.10.3.custom.css" />
 <link rel="stylesheet" type="text/css" href="/css/userTable.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css"></head>

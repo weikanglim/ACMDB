@@ -61,7 +61,8 @@ if(Input::exists('post')){
 </head><body>
 <div class='record'>
 <h3>Add New Event</h3>
-<?php echo $error;?>
+<?php if($error) echo '<div class="ui-state-error ui-corner-all">
+		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span><strong>Error:</strong> ' .$error. '</p> </div>';?>
 			<?php
 				 $create = new CreateForm($fields);
 				 echo $create->render();

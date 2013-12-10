@@ -83,6 +83,8 @@ if(Input::exists('post')){
 <html>
 <head>
 <title>SIG Groups</title>
+	<link rel="stylesheet" media="all" type="text/css"
+	href="/css/jquery-ui-1.10.3.custom.css" />
 <link rel="stylesheet" type="text/css" href="/css/userTable.css">
 <link rel="stylesheet" type="text/css" href="/css/table.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
@@ -93,7 +95,8 @@ if(Input::exists('post')){
 <?php 
 echo Session::flash ('participate');
 
-	echo $error;
+	if($error) echo '<div class="ui-state-error ui-corner-all">
+		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span><strong>Error:</strong> ' .$error. '</p> </div>';
 ?>
 </div>
 		<?php $eventTable = new EventsTable($records, $headers, 'index.php', $joinedEvents); 

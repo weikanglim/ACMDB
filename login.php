@@ -45,10 +45,12 @@ if(Input::exists()){
 
 <head>
 <title>ACM Member Login</title>
+	<link rel="stylesheet" media="all" type="text/css"
+	href="/css/jquery-ui-1.10.3.custom.css" />
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 </head><body>
-<?php if($errors){foreach($errors as $error){ echo $error . '<br>';};}?>
+<?php if($errors) echo formatErrors($errors);?>
 		<div class=login>
 		<form class="pure-form pure-form-aligned" action="" method="post">
 		<fieldset>

@@ -96,6 +96,8 @@ if (! $user->isLoggedIn ()) {
 <html>
 <head>
 <title>Update Profile</title>
+	<link rel="stylesheet" media="all" type="text/css"
+	href="/css/jquery-ui-1.10.3.custom.css" />
 <link rel="stylesheet" type="text/css" href="/css/table.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
@@ -106,7 +108,8 @@ if (! $user->isLoggedIn ()) {
 
 	<?php 
 	echo Session::flash('pwd_chg');
-	echo $error; ?>
+	if($error) echo '<div class="ui-state-error ui-corner-all">
+		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span><strong>Error:</strong> ' .$error. '</p> </div>'; ?>
 	<?php if(Input::exists('get') && Input::get('chgpwd') && Input::get('user')){
 			$fields = array('password' => '', 'new_password' => '', 'new_password_again' => '');
 			$format = array('password' => 'Old Password', 'new_password' => 'New Password', 'new_password_again' => 'Confirm New Password');

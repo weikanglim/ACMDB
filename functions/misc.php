@@ -17,3 +17,13 @@ function delim($char, $count){
 	}
 	return $return;
 }
+
+function formatErrors($errors){
+	$output = "";
+	foreach($errors as $error){
+		$output .= '<div class="ui-state-error ui-corner-all">
+		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+		<strong>Error:</strong> ' .$error. '</p> </div>';
+	}
+	return $output;
+}

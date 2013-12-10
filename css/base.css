@@ -200,3 +200,10 @@ pre.cow{
 	margin: 0 auto;
 	width:95%;
 }
+
+.ui-state-error {
+	padding: 0 .7em;
+	width:20em;
+	margin:0 auto;
+	text-align:left;
+}
