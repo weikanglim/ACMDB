@@ -203,7 +203,14 @@ pre.cow{
 
 .ui-state-error {
 	padding: 0 .7em;
-	width:20em;
+	width:30em;
+	margin:0 auto;
+	text-align:left;
+}
+
+.ui-state-highlight {
+	padding: 0 .7em;
+	width:30em;
 	margin:0 auto;
 	text-align:left;
 }

@@ -25,7 +25,9 @@ class Session{
 			return $value;
 		} else{
 			if($string !== ''){
-				self::put($name, $string);
+				self::put($name, '<div class="ui-state-highlight ui-corner-all"><p><span class="ui-icon ui-icon-check" style="float: left; margin-right: .3em;"></span>
+									<strong>Success: </strong>'. $string . '</div>');
+
 			}
 		}
 	}
