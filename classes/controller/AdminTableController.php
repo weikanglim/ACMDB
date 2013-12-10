@@ -155,7 +155,7 @@ class AdminTableController{
 	}
 	
 	public function editSubmission(){
-		return (Input::exists('post') && !Input::exists('navigation'));
+		return Input::exists('post');
 	}
 	public function records(){
 		return $this->records;
