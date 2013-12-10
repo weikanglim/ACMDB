@@ -17,19 +17,30 @@
 
 body {
 	font-family: 'Raleway', sans-serif;
+    background: #eee;
+}
+
+.page {
+    margin-left:10%;
+    margin-right:10%;
 }
 
 .nav-container{
 	margin: 0 auto;
-	padding: 1em 1.5em;
-	text-align: center;
+	padding: 0.8em 1.2em;
+	text-align: left;
+    margin-left:8%;
+    margin-right:10%;
+}
+
+.nav-background{
 	background: #435a6b;
 }
 
 nav a {
 	position: relative;
 	display: inline-block;
-	margin: 15px 25px;
+	margin: 1px 2px;
 	outline: none;
 	color: #fff;
 	text-decoration: none;
@@ -37,7 +48,7 @@ nav a {
 	letter-spacing: 1px;
 	font-weight: 400;
 	text-shadow: 0 0 1px rgba(255,255,255,0.3);
-	font-size: 1.35em;
+	font-size: 1.00em;
 }
 
 nav a:hover,
@@ -118,8 +129,8 @@ nav a:focus {
 
 pre.cow{
 	font-size: 18px;
-	padding-left:38%;
-	text-align:left;
+    padding-left:38%;	
+    text-align:left;
 }
 
 .login{
@@ -213,4 +224,5 @@ pre.cow{
 	width:30em;
 	margin:0 auto;
 	text-align:left;
+}
 }
