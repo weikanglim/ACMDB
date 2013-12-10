@@ -39,6 +39,13 @@ $control->runController();
 <link type="text/css" rel="stylesheet" href="/css/jquery.qtip.css" />
 
 </head><body>
+</head><body>
+<?php if(!$control->edit()){
+	echo "<div class='admin'>";
+} else {
+	echo "<div class='long-record'>";
+}?>
+<div>
 <h3>Companies</h3>
 
 <div>
@@ -73,6 +80,6 @@ $control->runController();
 					 });
 	</script>
 	<?php if(!$control->edit()) echo $companiesTable->scripts(); ?>
-	
+</div>
 </body>
 </html>

@@ -185,8 +185,19 @@ pre.cow{
 	width:50%;
 }
 
-.eventRecord{
+.long-record{
+	margin: 0 auto;
+	width:70%;
+	text-align: center;
+}
+
+.record{
 	margin: 0 auto;
 	width:50%;
 	text-align: center;
+}
+
+.admin{
+	margin: 0 auto;
+	width:95%;
 }

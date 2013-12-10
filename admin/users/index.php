@@ -38,12 +38,7 @@ $validation = array (
 $control = new AdminTableController($dbo, $table, $edit_table, $primary_key, $validation);
 $control->runController();
 
-if($control->edit()){
-	$user = DB::getInstance()->get('users_view', array('uid', '=', Input::get('edit')))->first();
-	echo "<h3>User Information for $user->name</h3>";
-} else{
-	echo "<h3>Users</h3>";
-}
+
 ?>
 
 <html>
@@ -56,8 +51,19 @@ if($control->edit()){
 <link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 <link type="text/css" rel="stylesheet" href="/css/jquery.qtip.css" />
 </head><body>
+<?php if(!$control->edit()){
+	echo "<div class='admin'>";
+} else {
+	echo "<div class='long-record'>";
+}?>
 <div>
 <?php 
+if($control->edit()){
+	$user = DB::getInstance()->get('users_view', array('uid', '=', Input::get('edit')))->first();
+	echo "<h3>User Information for $user->name</h3>";
+} else{
+	echo "<h3>Users</h3>";
+}
 	echo $control->error();
 ?>
 </div>
@@ -96,6 +102,6 @@ if($control->edit()){
 					 });
 	</script>
 	<?php if(!$control->edit()) echo $usersTable->scripts(); ?>
-	
+	</div>
 </body>
 </html>

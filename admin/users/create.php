@@ -12,7 +12,6 @@ $edit = false;
 $headers = DB::getInstance()->get('information_schema.columns', array('table_name' , '=', "{$table}"), array('column_name'))->results();
 $fields = array(
 				'username' => 'Username',
-				'password' => 'Password',
 				'firstname' => 'First Name',
 				'lastname' => 'Last Name',
 				'email' => 'Email',
@@ -84,10 +83,12 @@ if(Input::exists('post')){
 <link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 	<link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 </head><body>
-<h3>Create New User</h3>
+<div class='record'>
+<h3>Add New User</h3>
 			<?php
 				 $create = new CreateForm($fields);
 				 echo $create->render();
 			?>
 </body>
+</div>
 </html>

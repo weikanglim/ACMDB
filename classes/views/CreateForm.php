@@ -32,10 +32,9 @@ class CreateForm extends Form {
 				$label = "<tr><td>{$label}</td>";
 				if(in_array(strtolower($field), array_keys($this->_specials))){
 					$info = "<td>" . Selections::renderHTML($this->_specials[strtolower($field)], $field, $this->getOptions(strtolower($field))) . "</td></tr>";
-				} else if(in_array(strtolower($field), array_keys($this->_long_input))){
+				} else if(in_array(strtolower($field), $this->_long_input)){
 					$info = "<td><input class=\"long-input\" type=\"{$type}\" name=\"{$field}\" id=\"{$field}\" value=\"\"></td></tr>";
-				}
-				else{
+				} else{
 					$info = "<td><input class=\"input\" type=\"{$type}\" name=\"{$field}\" id=\"{$field}\" value=\"\"></td></tr>";
 				}
 			}
@@ -44,7 +43,7 @@ class CreateForm extends Form {
 				$x ++;
 			}
 		$output .= "</table></div>";
-		$output .= $this->_footer . "<input type='reset' value='Reset'><a href='index.php' style='margin-left:20px'>Back</a></form></div>";
+		$output .= $this->_footer . "<input type='reset' value='Reset'><a class='alink' href='index.php' style='margin-left:20px'>Back</a></form></div>";
 		
 		return $output;
 	}

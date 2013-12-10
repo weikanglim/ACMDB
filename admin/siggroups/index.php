@@ -38,6 +38,12 @@ $control->runController();
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 <link type="text/css" rel="stylesheet" href="/css/jquery.qtip.css" />
 </head><body>
+<?php if(!$control->edit()){
+	echo "<div class='admin'>";
+} else {
+	echo "<div class='long-record'>";
+}?>
+<div>
 <h3>Special Interest Groups</h3>
 <div>
 <?php 
@@ -78,6 +84,6 @@ $control->runController();
 					 });
 	</script>
 	<?php if(!$control->edit()) echo $sigTable->scripts(); ?>
-	
+</div>
 </body>
 </html>

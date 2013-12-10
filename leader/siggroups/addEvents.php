@@ -67,7 +67,7 @@ if(Input::exists('post')){
 <link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 </head>
 <body>
-<div class='eventRecord'>
+<div class='record'>
 	<h3>Add New Event</h3>
 
 			<?php
