@@ -12,7 +12,6 @@ setlocale(LC_MONETARY, 'en_US.UTF-8');
 $currentBalance = money_format('%i' ,DB::getInstance()->get('users_balances_view', array('uid', '=', $uid))->first()->balance);
 $dbo = DB::getInstance()->query("Select event_name, location, event_datetime, organizer 
 		 from events_view AS ev where ev.eid IN (Select eid from users_events where UID = ?)", array($uid));
-print_r($dbo->error());
 
 if(!$dbo->error() && $dbo->count()){
 	$display = true;

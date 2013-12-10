@@ -114,7 +114,7 @@ nav a:focus {
 	transform: translateX(0px);
 }
 
-
+/* css for timepicker */
 .ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
 .ui-timepicker-div dl { text-align: left; }
 .ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
@@ -133,38 +133,8 @@ pre.cow{
     text-align:left;
 }
 
-.login{
-	width: 25%;
-	text-align: left;
-}
-
-.login legend{
-	text-align: left;
-}
-
-
 .register{
 	width: 20%;
-
-}
-
-.register form{
-}
-
-.register legend{
-	text-align: left;
-}
-
-.main{
-	width:50%;
-	text-align: left;
-}
-
-.main .user-table,
-.main .data-grid,
-.main .user-record,
-.main form{
-	width: auto;
 }
 
 .content{
@@ -184,7 +154,7 @@ pre.cow{
 }
 
 .long-record{
-	width:70%;
+	width:90%;
 	text-align: left;
 }
 
@@ -193,18 +163,17 @@ pre.cow{
 	text-align: left;
 }
 
-.admin{
-	width:95%;
-}
 
 .ui-state-error {
 	padding: 0 .7em;
 	width:30em;
+	margin: 0 1em;
 	text-align:left;
 }
 
-.ui-state-highlight {
+.ui-state-highlight.ui-corner-all {
 	padding: 0 .7em;
 	width:30em;
+	margin: 0 1em;
 	text-align:left;
 }

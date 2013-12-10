@@ -64,7 +64,7 @@ if(Input::exists('post')){
 	<link rel="stylesheet" type="text/css" href="/css/base.css">
 	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 </head><body>
-<div class='record'>
+<div class='long-record'>
 <h3>Add New SIG Group</h3>
 <?php 
 if($error) echo '<div class="ui-state-error ui-corner-all">
@@ -88,7 +88,6 @@ if($error) echo '<div class="ui-state-error ui-corner-all">
 			{
 				$('#meeting_time').timepicker();
 			});
-		</script>
-</div>		
+		</script>		
 </div></body>
 </html>
