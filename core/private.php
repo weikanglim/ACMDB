@@ -39,6 +39,7 @@ if($user->isLoggedIn()){
 	}else {
 		echo pageHeader('private');
 	}
+	echo "<div class='page'><h1>ACM DB Web Interface</h1>";
 } else {
 	Redirect::to('/login.php');
 }

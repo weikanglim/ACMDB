@@ -90,5 +90,5 @@ if($error) echo '<div class="ui-state-error ui-corner-all">
 			});
 		</script>
 </div>		
-</body>
+</div></body>
 </html>

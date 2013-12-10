@@ -58,6 +58,6 @@ if($error) echo '<div class="ui-state-error ui-corner-all">
 			echo ($transactionHistory->render());
 		?>
 		
-</body>
+</div></body>
 </div>
 </html>

@@ -107,7 +107,7 @@ echo Session::flash ('participate');
 
 		<?php $sig_table = new SIGTable($records, $headers, 'index.php', $joinedGroups); 
 			  echo $sig_table->render(); ?>
-</body>
+</div></body>
 <script>
 function confirmJoin()
 {

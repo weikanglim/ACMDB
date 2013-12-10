@@ -47,6 +47,6 @@ if(Input::get('gid')){
 		$addForm = new AddMemberForm(Session::get('gid'));
 		  echo $addForm->render(); ?>
 		  </div>
-</body>
+</div></body>
 </html>
 

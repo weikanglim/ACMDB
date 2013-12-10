@@ -46,5 +46,5 @@
  
 <?php echo $output; ?>
 </pre>
-</body>
+</div></body>
 </html>

@@ -83,5 +83,5 @@ echo $control->error();
 	</script>
 	<?php if(!$control->edit()) echo $companiesTable->scripts(); ?>
 </div>
-</body>
+</div></body>
 </html>

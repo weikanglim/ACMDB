@@ -28,13 +28,13 @@ INSERT INTO USERS_SIGGROUPS (gid, uid) values (2,2);
 INSERT INTO USERS_SIGGROUPS (gid, uid) values (3,1);
 
 INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Ramen Noodles', '2013-12-09 21:28:11' , 4); --OID 4: Josh Tan
-INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N\' Cheese', '2013-12-10 20:48:31' , 5); --OID 4: Sam
-INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N\' Cheese', '2013-12-11 14:57:13' , 5);
-INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N\' Cheese', '2013-12-11 12:23:14' , 5);
-INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N\' Cheese', '2013-12-12 10:11:51' , 5);
-INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N\' Cheese', '2013-12-12 08:46:01' , 5);
-INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N\' Cheese', '2013-12-13 11:27:22' , 5);
-INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N\' Cheese', '2013-12-13 13:34:33' , 5);
-INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N\' Cheese', '2013-12-13 12:19:44' , 5);
+INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N Cheese', '2013-12-10 20:48:31' , 5); --OID 4: Sam
+INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N Cheese', '2013-12-11 14:57:13' , 5);
+INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N Cheese', '2013-12-11 12:23:14' , 5);
+INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N Cheese', '2013-12-12 10:11:51' , 5);
+INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N Cheese', '2013-12-12 08:46:01' , 5);
+INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N Cheese', '2013-12-13 11:27:22' , 5);
+INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N Cheese', '2013-12-13 13:34:33' , 5);
+INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Mac N Cheese', '2013-12-13 12:19:44' , 5);
 INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Pop', '2013-12-11 11:18:11' , 6);
 INSERT INTO TRANSACTIONS(amount, description, time_initiated, uid) values ('-0.50' , 'Pop', '2013-12-09 07:36:56' , 5);

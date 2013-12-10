@@ -97,6 +97,6 @@ if($error) echo '<div class="ui-state-error ui-corner-all">
 				 $create = new CreateForm($fields);
 				 echo $create->render();
 			?>
-</body>
+</div></body>
 </div>
 </html>

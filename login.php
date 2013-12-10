@@ -75,5 +75,5 @@ if(Input::exists()){
 		<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 	</form>
 	</div>
-</body>
+</div></body>
 </html>

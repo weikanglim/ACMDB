@@ -64,5 +64,5 @@ Your current balance is  <?php echo $currentBalance ?>.
 }
 	?>
 </div>
-</body>
+</div></body>
 </html>

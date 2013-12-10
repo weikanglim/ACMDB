@@ -104,5 +104,5 @@ if($control->edit()){
 	</script>
 	<?php if(!$control->edit()) echo $usersTable->scripts(); ?>
 	</div>
-</body>
+</div></body>
 </html>

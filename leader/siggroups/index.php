@@ -159,5 +159,5 @@ echo Session::flash ('addSuccess');
 					 });
 	</script>
 	</div>		
-</body>
+</div></body>
 </html>

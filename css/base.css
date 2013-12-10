@@ -135,33 +135,29 @@ pre.cow{
 
 .login{
 	width: 25%;
-	margin: 0 auto;
-	text-align: center;
+	text-align: left;
 }
 
 .login legend{
-	text-align: center;
+	text-align: left;
 }
 
 
 .register{
 	width: 20%;
-	margin: 0 auto;
 
 }
 
 .register form{
-	margin: 0 23%;
 }
 
 .register legend{
-	text-align: center;
+	text-align: left;
 }
 
 .main{
-	margin: 0 auto;
 	width:50%;
-	text-align: center;
+	text-align: left;
 }
 
 .main .user-table,
@@ -169,7 +165,6 @@ pre.cow{
 .main .user-record,
 .main form{
 	width: auto;
-	margin: 5px auto;
 }
 
 .content{
@@ -177,50 +172,39 @@ pre.cow{
 }
 
 .profile{
-	margin: 0 auto;
-	width:30%;
+	width:50%;
 }
 
 .profile legend{
-	text-align: center;
-}
-
-.profile .pure-control-group{
-	margin: 0 12%;
+	text-align: left;
 }
 
 .sigs{
-	margin: 0 auto;
 	width:50%;
 }
 
 .long-record{
-	margin: 0 auto;
 	width:70%;
-	text-align: center;
+	text-align: left;
 }
 
 .record{
-	margin: 0 auto;
 	width:50%;
-	text-align: center;
+	text-align: left;
 }
 
 .admin{
-	margin: 0 auto;
 	width:95%;
 }
 
 .ui-state-error {
 	padding: 0 .7em;
 	width:30em;
-	margin:0 auto;
 	text-align:left;
 }
 
 .ui-state-highlight {
 	padding: 0 .7em;
 	width:30em;
-	margin:0 auto;
 	text-align:left;
 }

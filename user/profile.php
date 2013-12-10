@@ -125,5 +125,5 @@ if (! $user->isLoggedIn ()) {
 	}
 	?>
 </div>
-</body>
+</div></body>
 </html>

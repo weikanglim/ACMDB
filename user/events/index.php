@@ -101,7 +101,7 @@ echo Session::flash ('participate');
 </div>
 		<?php $eventTable = new EventsTable($records, $headers, 'index.php', $joinedEvents); 
 			  echo $eventTable->render(); ?>
-</body>
+</div></body>
 <script>
 function confirmJoin()
 {

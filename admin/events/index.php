@@ -83,5 +83,5 @@ echo Session::flash ( 'addSuccess');
 	</script>
 	<?php if(!$control->edit()) echo $eventsTable->scripts(); ?>
 </div>
-</body>
+</div></body>
 </html>

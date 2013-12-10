@@ -81,5 +81,5 @@ if(Input::exists('post')){
 			});
 		</script>
 </div>		
-</body>
+</div></body>
 </html>

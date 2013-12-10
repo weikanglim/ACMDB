@@ -98,5 +98,5 @@ if(Input::exists('post')){
 				echo $register->render();
 			?>
 </div>			
-</body>
+</div></body>
 </html>

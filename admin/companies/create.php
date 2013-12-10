@@ -73,5 +73,5 @@ if(Input::exists('post')){
 			?>
 
 	</div>
-</body>
+</div></body>
 </html>

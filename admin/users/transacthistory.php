@@ -78,5 +78,5 @@ if($error) echo '<div class="ui-state-error ui-corner-all">
 		?>
 		<div style="margin-top:3em;"><a class="alink" href="index.php">Back</a></div> 
 		</div>
-</body>
+</div></body>
 </html>

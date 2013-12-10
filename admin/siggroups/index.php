@@ -85,5 +85,5 @@ echo Session::flash ('addSuccess');
 	</script>
 	<?php if(!$control->edit()) echo $sigTable->scripts(); ?>
 </div>
-</body>
+</div></body>
 </html>
