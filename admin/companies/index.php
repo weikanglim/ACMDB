@@ -36,6 +36,8 @@ $control->runController();
 <link rel="stylesheet" type="text/css" href="/css/records.css">
 <link rel="stylesheet" type="text/css" href="/css/table.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
+<link type="text/css" rel="stylesheet" href="/css/jquery.qtip.css" />
+
 </head><body>
 <h3>Companies</h3>
 
@@ -53,6 +55,24 @@ $control->runController();
 			echo $companiesEdit->render();
 		}
 		?>
-
+		<!-- load jquery -->
+	<script type="text/javascript"
+		src="/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript"
+		src="/jquery-ui-1.10.3.custom.js"></script>
+		<script type="text/javascript" src="/jquery.qtip.js"></script>
+		<script>
+					 $(document).ready(function()
+					 {
+					     $('[title]').qtip({
+					         position: {
+					             target: 'mouse', // Track the mouse as the positioning target
+					             adjust: { x: 5, y: 5 } // Offset it slightly from under the mouse
+					         }
+					     });
+					 });
+	</script>
+	<?php if(!$control->edit()) echo $companiesTable->scripts(); ?>
+	
 </body>
 </html>

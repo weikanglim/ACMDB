@@ -131,6 +131,7 @@ if(Input::exists('post')){
 		}
 		?>
 		
-		
+			<script type="text/javascript"
+		src="/jquery-1.10.2.min.js"></script>
 </body>
 </html>

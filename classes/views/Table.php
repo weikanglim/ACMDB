@@ -21,7 +21,7 @@ class Table{
 	}
 	
 	protected function generateScripts(){
-		$this->_scripts = "<script src=\"/jquery-1.10.2.min.js\"></script>	<script>
+		$this->_scripts = "<script>
 				$(document).ready(function() {
 				    $('.datagrid tr td').click(function() {
 				        var href = $(this).find(\"a\").attr(\"href\");
@@ -120,9 +120,9 @@ EOD;
 					if ($this->_edit && $id) { // is primary id and table is clickable
 						// generate a link for editing the value
 						if(strtolower($field) == 'balance'){
-							$generated .= "<td><a href=\"transacthistory.php?user={$id}\">{$value}</a></td>";
+							$generated .= "<td title='Click here to see transaction history of this user.'><a href=\"transacthistory.php?user={$id}\">{$value}</a></td>";
 						} else{
-							$generated .= "<td><a href=\"{$this->_link}?edit={$id}\">{$value}</a></td>";
+							$generated .= "<td title='Click here to edit this record.'><a href=\"{$this->_link}?edit={$id}\">{$value}</a></td>";
 						}
 					}else{
 						$generated .= "<td>{$value}</td>";
@@ -152,7 +152,6 @@ EOD;
 				<div><form action='index.php' method='post'>
 				<input type='hidden' name='$token_name' id='$token_name' value='$token' >
 				<input type='submit' name='delete_selected' id='delete_selected' value='Delete Selected' </form></div>";
-		$this->_tableFooter .= $this->_scripts;
 	}
 	
 	public function render(){
@@ -174,4 +173,8 @@ EOD;
 				$this->_tableFooter;
 		return $table;
 	}	
+	
+	public function scripts(){
+		return $this->_scripts;
+	}
 }
