@@ -3,7 +3,6 @@ $base = $_SERVER['DOCUMENT_ROOT'];
 require_once $base . "/core/init.php";
 require_once $base . "/core/private.php";
 
-echo Session::flash ('participate');
 
 $user = new User();
 $uid = $user->data()->uid;
@@ -97,6 +96,8 @@ if(Input::exists('post')){
 <h2>SIG Groups</h2>
 <div>
 <?php 
+echo Session::flash ('participate');
+
 	echo $error;
 ?>
 </div>

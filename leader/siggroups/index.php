@@ -4,8 +4,6 @@ require_once $base . "/core/init.php";
 require_once $base . "/core/leader.php";
 require_once $base . "/core/private.php";
 
-echo Session::flash ('editSuccess');
-echo Session::flash ('addSuccess');
 $user = new User();
 $uid = $user->data()->uid;
 $table = 'siggroups_view'; 
@@ -119,6 +117,8 @@ if(Input::exists('post')){
 <div class='sigs'>
 	<div>
 <?php 
+echo Session::flash ('editSuccess');
+echo Session::flash ('addSuccess');
 	echo $error;
 ?>
 </div>

@@ -4,8 +4,6 @@ require_once $base . "/core/init.php";
 require_once $base . "/core/admin.php";
 require_once $base . "/core/private.php";
 
-echo Session::flash ('editSuccess');
-echo Session::flash ('addSuccess');
 $table = 'siggroups_view'; 
 $edit_table = 'siggroups_edit_view';
 $primary_key = 'gid';
@@ -46,7 +44,9 @@ $control->runController();
 <div>
 <h3>Special Interest Groups</h3>
 <div>
-<?php 
+<?php echo Session::flash ('editSuccess');
+echo Session::flash ('addSuccess');
+
 	echo $control->error();
 ?>
 </div>

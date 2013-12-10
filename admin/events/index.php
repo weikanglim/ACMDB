@@ -5,8 +5,6 @@ require_once $base . "/core/admin.php";
 require_once $base . "/core/private.php";
 
 
-echo Session::flash ( 'editSuccess' );
-echo Session::flash ( 'addSuccess');
 
 $table = 'events_view';
 $edit_table = 'events';
@@ -42,7 +40,9 @@ $control->runController();
 <div>
 <h3>Events</h3>
 
-	<div><?php echo $control->error(); ?></div>
+	<div><?php echo Session::flash ( 'editSuccess' );
+echo Session::flash ( 'addSuccess');
+	echo $control->error(); ?></div>
 
 
 		<?php

@@ -3,7 +3,6 @@
 require_once 'core/init.php';
 require_once 'core/private.php';
 
-echo Session::flash('home');
 $user = new User();
 $uid = $user->data()->uid;
 $display = false;
@@ -32,6 +31,8 @@ if(!$dbo->error() && $dbo->count()){
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css"></head>
 <body>
 <div class="main">
+<?php echo Session::flash('home');
+?>
 
 <pre class="cow" ">
   <?php echo delim('_', $length) . '<br>&lt; ' . $greeting . ' &gt;<br>  ' . delim('-', $length); ?> 

@@ -9,6 +9,7 @@ $table = 'events';
 $id = 'eid';
 $insert_table ='events';
 $edit = false;
+$error = "";
 $headers = DB::getInstance()->get('information_schema.columns', array('table_name' , '=', "{$table}"), array('column_name'))->results();
 $fields = array(
 			'event_name' => 'Event Name',
@@ -42,8 +43,8 @@ if(Input::exists('post')){
 		}
 	} else {
 		$errors = $validation->errors ();
-		foreach ( $errors as $error ) {
-			echo "$error <br>";
+		foreach ( $errors as $validate_error ) {
+			$error .=  "$validate_error <br>";
 		}
 	}
 }
@@ -60,7 +61,7 @@ if(Input::exists('post')){
 </head><body>
 <div class='record'>
 <h3>Add New Event</h3>
-
+<?php echo $error;?>
 			<?php
 				 $create = new CreateForm($fields);
 				 echo $create->render();

@@ -5,8 +5,6 @@ require_once $base . "/core/admin.php";
 require_once $base . "/core/private.php";
 
 
-echo Session::flash ('editSuccess');
-echo Session::flash ('addSuccess');
 $table = 'companies_view'; 
 $edit_table = 'companies_view';
 $primary_key = 'cid';
@@ -50,7 +48,9 @@ $control->runController();
 
 <div>
 <?php 
-	echo $control->error();
+	echo Session::flash ('editSuccess');
+echo Session::flash ('addSuccess');
+echo $control->error();
 ?>
 </div>
 		<?php 

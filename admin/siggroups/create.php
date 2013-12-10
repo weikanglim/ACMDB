@@ -8,6 +8,7 @@ require_once $base . "/core/private.php";
 $table = 'siggroups_edit_view';
 $insert_table ='siggroups_edit_view';
 $edit = false;
+$error = "";
 $fields = array(
 			'title' => 'Group Name',
 			'description' => 'Description',
@@ -47,8 +48,8 @@ if(Input::exists('post')){
 		}
 	} else {
 		$errors = $validation->errors ();
-		foreach ( $errors as $error ) {
-			echo "$error <br>";
+		foreach ( $errors as $validate_error ) {
+			$error .=  "$validate_error <br>";
 		}
 	}
 }
@@ -65,6 +66,9 @@ if(Input::exists('post')){
 </head><body>
 <div class='record'>
 <h3>Add New SIG Group</h3>
+<?php 
+echo $error;
+?>
 			<?php
 				 $create = new CreateForm($fields);
 				 echo $create->render();

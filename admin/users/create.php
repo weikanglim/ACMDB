@@ -5,10 +5,10 @@ require_once $base . "/core/admin.php";
 require_once $base . "/core/private.php";
 
 	
-echo Session::flash ('addSuccess');
 $table = 'users';
 $id = 'uid';
 $edit = false;
+$error = "";
 $headers = DB::getInstance()->get('information_schema.columns', array('table_name' , '=', "{$table}"), array('column_name'))->results();
 $fields = array(
 				'username' => 'Username',
@@ -85,6 +85,11 @@ if(Input::exists('post')){
 </head><body>
 <div class='record'>
 <h3>Add New User</h3>
+<div>
+<?php 
+echo Session::flash ('addSuccess');
+echo $error;?>
+</div>
 			<?php
 				 $create = new CreateForm($fields);
 				 echo $create->render();

@@ -5,8 +5,6 @@ require_once $base . "/core/admin.php";
 require_once $base . "/core/private.php";
 
 
-echo Session::flash ('editSuccess');
-echo Session::flash ('addSuccess');
 $table = 'users_view';
 $edit_table = 'users';
 $primary_key = 'uid';
@@ -58,6 +56,9 @@ $control->runController();
 }?>
 <div>
 <?php 
+echo Session::flash ('editSuccess');
+echo Session::flash ('addSuccess');
+
 if($control->edit()){
 	$user = DB::getInstance()->get('users_view', array('uid', '=', Input::get('edit')))->first();
 	echo "<h3>User Information for $user->name</h3>";
@@ -73,7 +74,7 @@ if($control->edit()){
 			echo $usersTable->render();			
 		}else{
 			$userEdit = new EditForm($control->record(), $control->primary_key());
-			echo $userEdit->render();
+			echo $userEdit->render(false);
 		}
 		?>
 

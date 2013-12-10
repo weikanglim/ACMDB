@@ -26,9 +26,8 @@ class EditForm extends Form {
 		$primary = $this->_primary;
 		$fields = implode ( ":", array_keys ( ( array ) $data ) );
 		foreach ( $data as $field => $value ) {
-			if (substr_count ( $field, 'password' ) && !$showPassword) {
+			if ((substr_count ( $field, 'password' )  || $field == 'salt')&& !$showPassword) {
 				$type = "password";
-				$value = "";
 			} else {
 				$type = "text";
 			}
