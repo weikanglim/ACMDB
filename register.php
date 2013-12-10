@@ -87,10 +87,9 @@ if(Input::exists('post')){
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 </head><body>
-<div>
-	<?php echo $error; ?>
-</div>
 <div class='register'>
+			<?php echo $error; ?>
+			
 			<?php
 				$register = new RegisterForm($fields);
 				echo $register->render();

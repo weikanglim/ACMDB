@@ -71,4 +71,4 @@ if(Cookie::exists(Config::get('remember/cookie_name')) && !Session::exists(Confi
 	}
 }
 
-echo "<h1>ACM DB Web Interface</h1>";
+echo "<h1 style='text-align:center'>ACM DB Web Interface</h1>";

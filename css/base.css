@@ -118,11 +118,14 @@ nav a:focus {
 
 pre.cow{
 	font-size: 18px;
+	padding-left:38%;
+	text-align:left;
 }
 
 .login{
 	width: 25%;
 	margin: 0 auto;
+	text-align: center;
 }
 
 .login legend{
@@ -133,6 +136,7 @@ pre.cow{
 .register{
 	width: 20%;
 	margin: 0 auto;
+
 }
 
 .register form{
@@ -143,5 +147,35 @@ pre.cow{
 	text-align: center;
 }
 
+.main{
+	margin: 0 auto;
+	width:50%;
+	text-align: center;
+}
 
+.main .user-table,
+.main .data-grid,
+.main .user-record,
+.main form{
+	width: auto;
+	margin: 5px auto;
+}
 
+.content{
+
+	margin: 2em 0;
+}
+
+.profile{
+	margin: 0 auto;
+	width:30%;
+}
+
+.profile legend{
+	text-align: center;
+}
+
+.profile .pure-control-group,
+.profiel .pure-form .pure-button{
+	margin: 0 12%;
+}

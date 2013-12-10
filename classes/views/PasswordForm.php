@@ -1,5 +1,5 @@
 <?php
-class PasswordForm extends EditForm{
+class PasswordForm extends ProfileForm{
 	public function __construct($data, $primary){
 		parent::__construct($data, $primary);
 	}
@@ -11,8 +11,8 @@ class PasswordForm extends EditForm{
 		$this->_footer = '<input type="hidden" name="'. $tokenName . '"
 				value="' . $token .'"> <input
 				type="hidden" name="user" value="'. $user .'">
-				<input type="submit" value="Submit">' .
-				"<input type='reset' value='Reset'> <a class='alink' href='profile.php' style='margin-left:20px'>Back</a>";
+				<button class="pure-button pure-button-primary" type="submit">Submit</button>' .
+				"<button class='pure-button' type='reset'>Reset</button> <a class='alink' href='profile.php' style='margin-left:20px'>Back</a>";
 	}
 	
 	public function render(){

@@ -98,31 +98,29 @@ if (! $user->isLoggedIn ()) {
 <title>Update Profile</title>
 <link rel="stylesheet" type="text/css" href="/css/table.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 
 </head>
 <body>
-	<h2>Update Profile</h2>
-	<div><?php 
+<div class="profile">
+
+	<?php 
 	echo Session::flash('pwd_chg');
-	echo $error; ?></div>
+	echo $error; ?>
 	<?php if(Input::exists('get') && Input::get('chgpwd') && Input::get('user')){
-			if($user->data()->uid != Input::get('user')){
-				Redirect::to(403);
-			} 
 			$fields = array('password' => '', 'new_password' => '', 'new_password_again' => '');
 			$format = array('password' => 'Old Password', 'new_password' => 'New Password', 'new_password_again' => 'Confirm New Password');
-				$pwdForm = new PasswordForm($fields, $primary_key);
-				echo $pwdForm->render(); 
+			$pwdForm = new PasswordForm($fields, $primary_key);
+			echo $pwdForm->render(); 
 	}else{
 			$profileForm = new ProfileForm($profileFields, $primary_key);
 			echo $profileForm->render(false);
-			?>
-	<form action="" method="get">
-		<input type="hidden" name="chgpwd" value="1"> <input type="hidden"
-			name="user" value="<?php echo $user->data()->uid ?>"> <input
-			type="submit" value="Change Password">
-	</form>
-	
-<?php }?>
+			echo '<form class="pure-form" style="" action="" method="get">
+		<input type="hidden" name="chgpwd" value="1">
+		<input type="hidden" name="user" value="' . $user->data()->uid . '"> 
+		<button class="pure-button" type="submit" style="margin:0 35%">Change Password</button>';
+	}
+	?>
+</div>
 </body>
 </html>
