@@ -2,32 +2,42 @@
 class RegisterForm extends CreateForm{
 	public function generateFooter(){
 		$fields= implode(':' , array_keys ( ( array ) $this->_fieldsAndLabels ) ) ;
-		$this->_footer = "<input type=\"hidden\" name=\"fields\" value=\"{$fields}\"> <div style='margin-top:5px'><input type=\"submit\" value=\"Register\">";
+		$this->_footer = "<input type=\"hidden\" name=\"fields\" value=\"{$fields}\">
+		<button class='pure-button pure-button-primary' type=\"submit\">Register</button>";
 	}
 	
 	public function render(){
 		$this->generateFooter();
-		$output = '<form action="" method="post">';
-		$output .='<div class="user-record";><table><thead><tr><th>Field</th><th>Value</th></tr></thead>';
+		$output = '<form class="pure-form" action="" method="post">';
+		$output .= '<legend>Registration</legend>';
 		$fields = $this->_fieldsAndLabels;
 		$field_str = implode(":", array_keys($fields));
 		$x = 0;
 		$type = "";
+		
 		foreach ( $fields as $field=>$label ) {
+			switch($field){
+				case 'firstname': $output .= "</fieldset>";
+				case 'username':
+					$output .= "<fieldset class='pure-group'>"; break;
+			} 
 			if (substr_count ( $field, 'password' )) {
 				$type = "password";
 			} else {
 				$type = "text";
 			}
-			$label = "<tr><td>{$label}</td>";
+// 			$htmlLabel = "<label for=\"{$label}\">{$label}</label>";
 			$value = Input::get($field);
-			$info = "<td><input class=\"input\" type=\"{$type}\" name=\"{$field}\" id=\"{$field}\" value=\"{$value}\"></td></tr>";
-	
-			$output = $output . $label . $info;
+			$info = "<input class=\"input\" type=\"{$type}\" name=\"{$field}\" id=\"{$field}\" placeholder=\"{$label}\" value=\"{$value}\">";
+			if($field == 'phone') $output .= "</fieldset>"; 
+				
+			$output = $output  . $info;
 			$x ++;
 		}
-		$output .= "</table></div>";
-		$output .= $this->_footer . "<input type='reset' value='Reset'><a href='index.php' style='margin-left:20px'>Back</a></form></div>";
+		$output .= "<fieldset><div class='pure-controls' style='margin-top:1em'>" . 
+					$this->_footer . 
+					"<button type='reset' class='pure-button pure-button-secondary'>Reset</button></div>
+					</fieldset></form>";
 	
 		return $output;
 	}

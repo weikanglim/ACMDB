@@ -120,6 +120,28 @@ pre.cow{
 	font-size: 18px;
 }
 
+.login{
+	width: 25%;
+	margin: 0 auto;
+}
+
+.login legend{
+	text-align: center;
+}
+
+
+.register{
+	width: 20%;
+	margin: 0 auto;
+}
+
+.register form{
+	margin: 0 23%;
+}
+
+.register legend{
+	text-align: center;
+}
 
 
 

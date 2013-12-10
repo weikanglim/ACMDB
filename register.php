@@ -85,16 +85,16 @@ if(Input::exists('post')){
 <link rel="stylesheet" type="text/css" href="/css/records.css">
 <link rel="stylesheet" type="text/css" href="/css/table.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 </head><body>
-<h3>Registration</h3>
 <div>
 	<?php echo $error; ?>
 </div>
-	<div>
+<div class='register'>
 			<?php
 				$register = new RegisterForm($fields);
 				echo $register->render();
 			?>
-	</div>
+</div>			
 </body>
 </html>

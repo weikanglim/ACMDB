@@ -45,27 +45,33 @@ if(Input::exists()){
 
 <head>
 <title>ACM Member Login</title>
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 </head><body>
 <?php if($errors){foreach($errors as $error){ echo $error . '<br>';};}?>
-		<form action="" method="post">
-		<table>
-			<tr>
-				<td><label for="username">Username</label></td>
-				<td><input type="text" name="username" id="username"></td>
-			</tr>
-			<tr>
-				<td><label for="password">Password</label></td>
-				<td><input type="password" name="password" id="password"></td>
-			</tr>
-			<tr>
-				<td><input type="checkbox" name="remember" id="remember"> Remember me</td>
-			</tr>
-			<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
-			<tr>
-				<td><input type="submit" value="Login"></td>
-			</tr>
-		</table>
+		<div class=login>
+		<form class="pure-form pure-form-aligned" action="" method="post">
+		<fieldset>
+		<legend>Login</legend>
+	        <div class="pure-control-group">
+				<label for="username">Username</label>
+				<input type="text" name="username" id="username" placeholder="Username">
+			</div>
+	        <div class="pure-control-group">
+			
+				<label for="password">Password</label>
+				<input type="password" name="password" id="password" placeholder="Password">
+			</div>
+			
+	        <div class="pure-controls">
+				<label for="remember" class="pure-checkbox">
+					<input type="checkbox" name="remember" id="remember"> Remember me
+				</label>
+				<button type="submit" class="pure-button pure-button-primary">Sign in</button>
+			</div>			
+		</fieldset>
+		<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 	</form>
+	</div>
 </body>
 </html>
