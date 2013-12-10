@@ -34,7 +34,7 @@ if(Input::get('gid')){
 <head>
 <title>Add New Member</title>
 <link rel="stylesheet" type="text/css" href="/css/table.css">
-<link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 </head><body>
 <h3>Add New Member</h3>
 	<?php echo $error;

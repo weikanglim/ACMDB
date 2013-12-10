@@ -86,8 +86,9 @@ if(Input::exists('post')){
 <title>SIG Groups</title>
 <link rel="stylesheet" type="text/css" href="/css/userTable.css">
 <link rel="stylesheet" type="text/css" href="/css/table.css">
-<link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 </head><body>
+<div class='main'>
 <h2>Upcoming Events</h2>
 <div>
 <?php 
@@ -108,4 +109,5 @@ function confirmLeave()
 return confirm("Are you sure you want to cancel your RSVP?");	
 }
 </script>
+</div>
 </html>

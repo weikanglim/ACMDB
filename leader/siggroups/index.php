@@ -111,7 +111,7 @@ if(Input::exists('post')){
 <title>SIG Groups</title>
 <link rel="stylesheet" type="text/css" href="/css/userTable.css">
 <link rel="stylesheet" type="text/css" href="/css/table.css">
-<link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 </head><body>
 	<div>
 <?php 

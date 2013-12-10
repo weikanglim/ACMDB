@@ -64,8 +64,8 @@ if(Input::exists('post')){
 <link rel="stylesheet" media="all" type="text/css"
 	href="/css/jquery-ui-1.10.3.custom.css" />
 <link rel="stylesheet" type="text/css" href="/css/table.css">
-<link rel="stylesheet" type="text/css" href="/css/base.css">
-<link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+<link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 </head>
 <body>
 	<h3>Add New Event</h3>

@@ -81,8 +81,8 @@ if(Input::exists('post')){
 <head>
 	<title>Create New User</title>
 <link rel="stylesheet" type="text/css" href="/css/table.css">
-<link rel="stylesheet" type="text/css" href="/css/base.css">
-	<link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+	<link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 </head><body>
 <h3>Create New User</h3>
 			<?php

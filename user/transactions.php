@@ -40,7 +40,9 @@ if(!$dbo->error() && $dbo->count()){
 <link rel="stylesheet" type="text/css" href="/css/userTable.css">
 <link rel="stylesheet" type="text/css" href="/css/table.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 </head><body>
+<div class='main'>
 <h3>Transaction history for <?php echo $name; ?></h3>
 <div>
 <?php
@@ -54,4 +56,5 @@ echo $error;
 		?>
 		
 </body>
+</div>
 </html>

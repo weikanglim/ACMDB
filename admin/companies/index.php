@@ -35,7 +35,7 @@ $control->runController();
 <title>Companies</title>
 <link rel="stylesheet" type="text/css" href="/css/records.css">
 <link rel="stylesheet" type="text/css" href="/css/table.css">
-<link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 <link type="text/css" rel="stylesheet" href="/css/jquery.qtip.css" />
 
 </head><body>

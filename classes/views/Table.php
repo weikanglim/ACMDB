@@ -88,7 +88,7 @@ EOD;
 			foreach ( $headers as $header ) {
 				$header_val = $header;
 				$header = Format::nice ( $header );	// nice formatting
-				$generated .= "<th><a href=\"{$this->_link}?order={$header_val}\">{$header}</a></th>";
+				$generated .= "<th title=\"Click here to sort by this field.\"><a href=\"{$this->_link}?order={$header_val}\">{$header}</a></th>";
 			}
 			$generated .= $this->_delete ? "<th>Delete</th>" : ""  . "</tr></thead>";
 		}	

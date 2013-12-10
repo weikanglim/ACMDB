@@ -91,7 +91,9 @@ if(Input::exists('post')){
 <link rel="stylesheet" type="text/css" href="/css/userTable.css">
 <link rel="stylesheet" type="text/css" href="/css/table.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 </head><body>
+<div class='main' style='width:70%'>
 <h2>SIG Groups</h2>
 <div>
 <?php 
@@ -113,4 +115,5 @@ function confirmLeave()
 return confirm("Are you sure you want to leave?");	
 }
 </script>
+</div>
 </html>

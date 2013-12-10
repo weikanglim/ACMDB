@@ -9,20 +9,6 @@ class UserTable extends Table{
 	protected function generateTableTop(){
 		
 	}
-	protected function generateTableHead(){
-		$generated = "";
-		$headers = $this->_headers;
-		if($headers){
-			$generated .= "<thead><tr>";
-			foreach ( $headers as $header ) {
-				$header_val = $header;
-				$header = Format::nice ( $header );	// nice formatting
-				$generated .= "<th>{$header}</th>";
-			}
-			$generated .= "</tr></thead>";
-		}
-		$this->_tableHead = $generated;
-	}
 	
 	public function render(){
 		$this->generateTableTop();
