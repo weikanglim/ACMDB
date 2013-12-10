@@ -6,6 +6,8 @@ require_once $base . "/core/private.php";
 
 
 echo Session::flash ( 'editSuccess' );
+echo Session::flash ( 'addSuccess');
+
 $table = 'events_view';
 $edit_table = 'events';
 $primary_key = 'eid';
