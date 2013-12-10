@@ -1,0 +1,6 @@
+CHANGELIST (CSS)
+
+- Adjusted size/background/alignment of linkbar
+- Move header below linkbar
+- Add right and left margins of 10% on entire page
+- Added nav BG div to allow background to extend to the edges of the pages
