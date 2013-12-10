@@ -12,7 +12,8 @@
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	width: 100%; 
+	margin: 1em 0;
+	width: 80%; 
 }
 
 .datagrid table td,.datagrid table th {

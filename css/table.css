@@ -12,7 +12,8 @@
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	width: 70%;
+	margin: 1em auto;
+	width: 60%;
 }
 
 .user-record table td,.user-record table th {

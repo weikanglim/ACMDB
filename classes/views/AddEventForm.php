@@ -36,7 +36,7 @@ class AddEventForm extends CreateForm{
 			$output = $output . $label . $info;
 		}
 		$output .= "</table></div>";
-		$output .= $this->_footer . "<input type='reset' value='Reset'><a href='index.php' style='margin-left:20px'>Back</a></form></div>";
+		$output .= $this->_footer . "<input type='reset' value='Reset'><a class='alink' href='index.php' style='margin-left:20px'>Back</a></form></div>";
 	
 		return $output;
 	}

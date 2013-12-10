@@ -176,6 +176,17 @@ pre.cow{
 }
 
 .profile .pure-control-group,
-.profiel .pure-form .pure-button{
+.profile .pure-form .pure-button{
 	margin: 0 12%;
+}
+
+.sigs{
+	margin: 0 auto;
+	width:50%;
+}
+
+.eventRecord{
+	margin: 0 auto;
+	width:50%;
+	text-align: center;
 }
