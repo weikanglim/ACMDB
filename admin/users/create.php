@@ -34,9 +34,6 @@ if(Input::exists('post')){
 			'lastname' => array (
 					'required' => true
 			),
-			'password' => array(
-				'required' => true
-			),
 			'email' => array (
 					'required' => true,
 					'email' => true
