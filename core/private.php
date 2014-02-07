@@ -20,7 +20,7 @@ if($user->isLoggedIn()){
 		if($user->isAdmin() && $user->isLeader()){
 			$selections = array('User', 'Leader', 'Admin');
 		} else if ($user->isAdmin()){
-			$selections = array('User', 'Leader');
+			$selections = array('User', 'Admin');
 		}
 		else if($user->isLeader()){
 			$selections = array('User', 'Leader');
