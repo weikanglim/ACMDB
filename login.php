@@ -4,6 +4,8 @@ require_once $base . '/core/init.php';
 require_once $base . "/core/public.php";
 
 echo Session::flash('registered');
+echo Session::flash('reset');
+echo Session::flash('resetSuccess');
 $user = new User();
 $errors = array();
 if($user->isLoggedIn()){
@@ -69,6 +71,7 @@ if(Input::exists()){
 				<label for="remember" class="pure-checkbox">
 					<input type="checkbox" name="remember" id="remember"> Remember me
 				</label>
+				<a class="alink" style="font-size:12px;color:0E5CE3" href="forgotPassword.php">Forgot your password?</a><br>
 				<button type="submit" class="pure-button pure-button-primary">Sign in</button>
 			</div>			
 		</fieldset>
