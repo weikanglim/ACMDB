@@ -31,7 +31,7 @@ function rmList($list){
 }
 
 function rmMember($member_email, $list){
-	shell_exec("ssh script@hack.ndacm.org '/etc/scripts/rmMember {$member_email} {$list}'",$output,$status);
+	exec("ssh script@hack.ndacm.org '/etc/scripts/rmMember {$member_email} {$list}'",$output,$status);
 	if($status == 0){
 		return true;
 	} else {
