@@ -118,7 +118,7 @@ if(Input::exists('post')){
 <div>
 <?php 
 echo Session::flash ('participate');
-echo Session::flashError('error');
+if(Session::exists('error'))echo Session::flashError('error');
 
 	if($error) echo '<div class="ui-state-error ui-corner-all">
 		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span><strong>Error:</strong> ' .$error. '</p> </div>';
