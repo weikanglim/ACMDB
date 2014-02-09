@@ -39,22 +39,32 @@ class AdminTableController{
 			// Deletions
 			if($this->deleteInitiated()){
 				if(Token::check(Input::get('delete_token'), 'delete_token')){
+					$errors = array();
 					// Deletion of mailing list.
 					if($this->edit_table == 'siggroups_edit_view'){ // Delete group mailing lists
-						$list = strtolower(DB::getInstance()->get('siggroups_edit_view',array('gid','=',$this->primary_key))->first()->title);
-						if(!rmList($list)){
-							Session::flashError('error', "Error removing mailing list. Please remove it manually at  <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>.");
-						}
-					} else if($this->edit_table == 'users'){ // Delete subscribers from mailing lists
-						$member_email = DB::getInstance()->get('users',array('uid','=',$this->primary_key))->first()->email;
-						$groups_joined = DB::getInstance()->get('users_siggroups')->getResults('gid');
-						foreach($group as $groups_joined){
-							$list = strtolower(DB::getInstance()->get('siggroups_edit_view',array('gid' ,'=',$group))->first()->title);
-							if(!rmMember($member_email, $list)){
-								Session::flashError('error', "Error removing user from all mailing lists. 
-										Please remove them manually at  <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>.");
+						$lists = strtolower(DB::getInstance()->get('siggroups_edit_view',array('gid','IN',explode(':' , Input::get('delete'))))
+								->getResults('title'));
+						foreach($list as $lists){
+							if(!rmList($list)){
+								$errors[] = "Error removing mailing list for {$list}. 
+								Please remove it manually at  <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>.";
 							}
 						}
+						Session::flashErrors('errors', $errors);
+					} else if($this->edit_table == 'users'){ // Delete subscribers from mailing lists
+						$member_emails = DB::getInstance()->get('users',array('uid','IN',
+							explode(':' , Input::get('delete'))))->getResults('email');
+						foreach($member_email as $member_emails){
+							$groups_joined = DB::getInstance()->get('users_siggroups')->getResults('gid');
+							foreach($group as $groups_joined){
+								$list = strtolower(DB::getInstance()->get('siggroups_edit_view',array('gid' ,'=',$group))->first()->title);
+								if(!rmMember($member_email, $list)){
+									$errors[] = "Error removing user {$member_email} from {$list} mailing list.
+											Please remove them manually at  <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>.";
+								}
+							}
+						}
+						Session::flashErrors('errors', $errors);
 					}
 						
 					if(DB::getInstance()->delete($this->edit_table, array($this->primary_key, 'IN',
