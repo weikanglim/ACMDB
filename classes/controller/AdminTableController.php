@@ -39,10 +39,28 @@ class AdminTableController{
 			// Deletions
 			if($this->deleteInitiated()){
 				if(Token::check(Input::get('delete_token'), 'delete_token')){
+					// Deletion of mailing list.
+					if($this->edit_table == 'siggroups_edit_view'){ // Delete group mailing lists
+						$list = DB::getInstance()->get('siggroups_edit_view',array('gid','=',$this->primary_key));
+						if(!rmList($list)){
+							Session::flashError('error', "Error removing mailing list. Please remove it manually at  <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>.");
+						}
+					} else if($this->edit_table == 'users'){ // Delete subscribers from mailing lists
+						$member_email = DB::getInstance()->get('users',array('uid','=',$this->primary_key))->first()->email;
+						$groups_joined = DB::getInstance()->get('users_siggroups')->getResults('gid');
+						foreach($group as $groups_joined){
+							$list = strtolower(DB::getInstance()->get('siggroups_edit_view',array('gid' ,'=',$group))->first()->title);
+							if(!rmMember($member_email, $list)){
+								Session::flashError('error', "Error removing user from all mailing lists. 
+										Please remove them manually at  <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>.");
+							}
+						}
+					}
+						
 					if(DB::getInstance()->delete($this->edit_table, array($this->primary_key, 'IN',
 							explode(':' , Input::get('delete')) ) )){
-						Session::flash('editSuccess', 'Records have been deleted.');
-						Redirect::to('index.php');
+							Session::flash('editSuccess', 'Records have been deleted.');
+							Redirect::to('index.php');
 					}
 				}
 			}
