@@ -67,9 +67,11 @@ if(Input::exists('post')){
 			if(Input::get('join')){
 				$gid = Input::get('join');
 				if(DB::getInstance()->insert('users_siggroups', array( 'uid' => $uid, 'gid' => $gid))){
-					$member_email = DB::getInstance()->get('users', array('uid', '=', $uid))->first()->email;
+					$member_email = $user->data()->email;
 					$list = DB::getInstance()->get('siggroups_view', array('gid', '=', $gid))->first()->group_name;
 					$list = strtolower($list);
+					echo $member_email;
+					echo $list;
 					if(!addMember($member_email, $list)){
 						Session::flashError('error', "Error adding user to mailing list. Please contact the group leader or a web administrator.");
 					} 
@@ -82,6 +84,8 @@ if(Input::exists('post')){
 					$member_email = DB::getInstance()->get('users', array('uid', '=', $uid))->first()->email;
 					$list = DB::getInstance()->get('siggroups_view', array('gid', '=', $gid))->first()->group_name;
 					$list = strtolower($list);
+					echo $member_email;
+					echo $list;
 					if(DB::getInstance()->query("SELECT * FROM SIGGROUPS WHERE LEADER_ID = ? AND GID = ?", array($uid, $gid))->count()){ // member is also leader
 						DB::getInstance()->update('siggroups', array('gid', $gid), array('leader_id' => null));
 						if(!rmList($list)){ // remove group mailing list
