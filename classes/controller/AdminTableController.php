@@ -44,7 +44,7 @@ class AdminTableController{
 					if($this->edit_table == 'siggroups_edit_view'){ // Delete group mailing lists
 						$lists = DB::getInstance()->get('siggroups_edit_view',array('gid','IN',explode(':' , Input::get('delete'))))
 								->getResults('title');
-						foreach($list as $lists){
+						foreach($lists as $list){
 							$list = strtolower($list);
 							if(!rmList($list)){
 								$errors[] = "Error removing mailing list for {$list}. 
@@ -53,11 +53,12 @@ class AdminTableController{
 						}
 						Session::flashErrors('errors', $errors);
 					} else if($this->edit_table == 'users'){ // Delete subscribers from mailing lists
-						$member_emails = DB::getInstance()->get('users',array('uid','IN',
-							explode(':' , Input::get('delete'))))->getResults('email');
-						foreach($member_email as $member_emails){
-							$groups_joined = DB::getInstance()->get('users_siggroups')->getResults('gid');
-							foreach($group as $groups_joined){
+						$users = DB::getInstance()->get('users',array('uid','IN',
+							explode(':' , Input::get('delete'))))->results();
+						foreach($users as $user){
+							$groups_joined = DB::getInstance()->get('users_siggroups', array('uid'), '=',$user->uid)->getResults('gid');
+							$member_email = $user->email;
+							foreach($groups_joined as $group){
 								$list = strtolower(DB::getInstance()->get('siggroups_edit_view',array('gid' ,'=',$group))->first()->title);
 								if(!rmMember($member_email, $list)){
 									$errors[] = "Error removing user {$member_email} from {$list} mailing list.

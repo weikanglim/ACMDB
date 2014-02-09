@@ -76,11 +76,11 @@ if (! $user->isLoggedIn ()) {
 					// Remove old emails and add new emails in mailing list
 					$uid = $user->data()->uid;
 					$gids = DB::getInstance()->get('users_siggroups',array('uid','=',$uid))->getResults('gid'); // All joined groups
-					foreach($gid as $gids){	
-						$group = DB::getInstance()->get('siggroups_edit_view',array('gid','=' ,$gid))->first()->title;
-						$list = strtolower($group);
-						rmMember($oldEmail, $list);
-						addMember($newEmail, $list);
+					foreach($gids as $gid){	
+						$group = DB::getInstance()->get('siggroups_edit_view',array('gid','=' ,$gid))->first();
+						$list = strtolower($group->title);
+						rmMember($oldEmail, $list, false); // don't notify user
+						addMember($newEmail, $list, false);
 					}
 				}
 				if ($user->update ( array (
