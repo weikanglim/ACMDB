@@ -5,7 +5,8 @@ class DB {
 			$_query,
 			$_error = false,
 			$_results,
-			$_count = 0;
+			$_count = 0,
+			$_assoc;
 	
 	private function __construct(){
 		try{
@@ -34,6 +35,7 @@ class DB {
 				}
 			}
 			if($this->_query->execute()){
+				$this->_assoc = $this->_query->fetch(PDO::FETCH_ASSOC);
 				$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
 				$this->_count = $this->_query->rowCount();
 			} else{
@@ -106,7 +108,7 @@ class DB {
 		return $this->action('DELETE', $table, $where);
 	}
 	
-	public function insert($table, $fields = array(), $return = null){
+	public function insert($table, $fields = array(), $return = false){
 		if(count($fields)){
 			$keys = array_keys($fields);
 			$values = null;
@@ -118,7 +120,7 @@ class DB {
 			if(!$return){
 				$sql = "INSERT INTO {$table} (" . implode(", " , $keys) . ") VALUES ({$values})";
 			} else {
-				$sql = "INSERT INTO {$table} (" . implode(", " , $keys) . ") VALUES ({$values}) RETURNING {$return}";
+				$sql = "INSERT INTO {$table} (" . implode(", " , $keys) . ") VALUES ({$values}) RETURNING *";
 			}
 			
 			$params = array_values($fields);
@@ -168,10 +170,15 @@ class DB {
 	}
 	
 	public function first(){
-		return $this->results()[0];
+		$results =  $this->results();
+		return $results[0];
 	}
 	
 	public function results(){
 		return $this->_results;
+	}
+	
+	public function assoc(){
+		return $this->_assoc;
 	}
 }
