@@ -70,12 +70,11 @@ if(Input::exists('post')){
 					$member_email = DB::getInstance()->get('users', array('uid', '=', $uid))->first()->email;
 					$list = DB::getInstance()->get('siggroups_view', array('gid', '=', $gid))->first()->group_name;
 					$list = strtolower($list);
-					if(addMember($member_email, $list)){
-						Session::flash('participate', 'You have joined the group.');
-						Redirect::to(Config::get('private/SIG Groups'));
-					} else {
-						$error = "Error adding user to mailing list. Please contact the group leader or a web administrator.";
-					}
+					if(!addMember($member_email, $list)){
+						Session::flashError('error', "Error adding user to mailing list. Please contact the group leader or a web administrator.");
+					} 
+					Session::flash('participate', 'You have joined the group.');
+					Redirect::to(Config::get('private/SIG Groups'));
 				}
 			} else if(Input::get('leave')){
 				$gid = Input::get('leave');
