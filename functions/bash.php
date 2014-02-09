@@ -4,7 +4,7 @@ function addList($list, $admin, $admin_pw){
 	if($status == 0){
 		return true;
 	} else {
-		error_log(join($output , "\n"));
+		error_log(join($output , "\n") . $status);
 		return false;
 	}
 }
@@ -14,7 +14,7 @@ function addMember($member_email, $list){
 	if($status == 0){
 		return true;
 	} else {
-		error_log(join($output , "\n"));
+		error_log(join($output , "\n") . $status);
 		return false;
 	}
 	
@@ -25,7 +25,7 @@ function rmList($list){
 	if($status == 0){
 		return true;
 	} else {
-		error_log(join($output , "\n"));
+		error_log(join($output , "\n") . $status);
 		return false;
 	}
 }
@@ -35,7 +35,7 @@ function rmMember($member_email, $list){
 	if($status == 0){
 		return true;
 	} else {
-		error_log(join($output , "\n"));
+		error_log(join($output , "\n") . $status);
 		return false;
 	}
 }
