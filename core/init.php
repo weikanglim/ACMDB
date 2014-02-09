@@ -58,6 +58,8 @@ spl_autoload_register(function($class) {
 require_once $base . "/functions/sanitize.php";
 require_once $base . "/functions/header.php";
 require_once $base . "/functions/misc.php";
+require_once $base . "/functions/bash.php";
+
 
 
 if(Cookie::exists(Config::get('remember/cookie_name')) && !Session::exists(Config::get('session/session_name'))){
