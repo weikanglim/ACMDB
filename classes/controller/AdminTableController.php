@@ -41,7 +41,7 @@ class AdminTableController{
 				if(Token::check(Input::get('delete_token'), 'delete_token')){
 					// Deletion of mailing list.
 					if($this->edit_table == 'siggroups_edit_view'){ // Delete group mailing lists
-						$list = DB::getInstance()->get('siggroups_edit_view',array('gid','=',$this->primary_key));
+						$list = strtolower(DB::getInstance()->get('siggroups_edit_view',array('gid','=',$this->primary_key))->first()->title);
 						if(!rmList($list)){
 							Session::flashError('error', "Error removing mailing list. Please remove it manually at  <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>.");
 						}
