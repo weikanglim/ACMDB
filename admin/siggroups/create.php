@@ -41,8 +41,7 @@ if(Input::exists('post')){
 		}
 		
 		if ($db->insert($insert_table, $fieldAndValue)) {
-			$assoc =$db->query("Select currval('siggroups_gid_seq')")->assoc();
-			$gid = $assoc['currval'];
+			$gid = $db->query("Select currval('siggroups_gid_seq')")->first()->currval;
 			$group = DB::getInstance()->get('siggroups_edit_view', array('gid', '=', $gid));
 			$list = $group->title;
 			$admin = DB::getInstance()->get('users', array('uid', '=', $group->leader));

@@ -35,7 +35,6 @@ class DB {
 				}
 			}
 			if($this->_query->execute()){
-				$this->_assoc = $this->_query->fetch(PDO::FETCH_ASSOC);
 				$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
 				$this->_count = $this->_query->rowCount();
 			} else{
@@ -128,7 +127,9 @@ class DB {
 				return true;	
 			}
 		}
-		return false;
+		return false;		print_r($this->_results);
+		print_r($results);
+		
 	}
 	
 	
@@ -170,15 +171,11 @@ class DB {
 	}
 	
 	public function first(){
-		$results =  $this->results();
+		$results =  $this->_results;
 		return $results[0];
 	}
 	
 	public function results(){
 		return $this->_results;
-	}
-	
-	public function assoc(){
-		return $this->_assoc;
 	}
 }
