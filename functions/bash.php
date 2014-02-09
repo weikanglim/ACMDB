@@ -9,8 +9,12 @@ function addList($list, $admin, $admin_pw){
 	}
 }
 
-function addMember($member_email, $list){
-	exec("ssh script@hack.ndacm.org '/etc/scripts/newMember {$member_email} {$list}'",$output,$status);
+function addMember($member_email, $list, $notify = true){
+	if($notify){
+		exec("ssh script@hack.ndacm.org '/etc/scripts/newMember {$member_email} {$list}'",$output,$status);
+	} else{
+		exec("ssh script@hack.ndacm.org '/etc/scripts/newMemberN {$member_email} {$list}'",$output,$status);
+	}
 	if($status == 0){
 		return true;
 	} else {
@@ -30,8 +34,12 @@ function rmList($list){
 	}
 }
 
-function rmMember($member_email, $list){
-	exec("ssh script@hack.ndacm.org '/etc/scripts/rmMember {$member_email} {$list}'",$output,$status);
+function rmMember($member_email, $list, $notify = true){
+	if($noify){
+		exec("ssh script@hack.ndacm.org '/etc/scripts/rmMember {$member_email} {$list}'",$output,$status);
+	}else{
+		exec("ssh script@hack.ndacm.org '/etc/scripts/rmMemberN {$member_email} {$list}'",$output,$status);
+	}
 	if($status == 0){
 		return true;
 	} else {
