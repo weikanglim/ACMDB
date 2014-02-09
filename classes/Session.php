@@ -44,4 +44,17 @@ class Session{
 		}
 	}
 	
+	public static function flashErrors($name, $error=array()){
+		if(self::exists($name)){
+			$value = self::get($name);
+			self::delete($name);
+			return $value;
+		} else{
+			if($error){
+				self::put($name, formatErrors($errors));
+			}
+		}
+	}
+	
+	
 }
