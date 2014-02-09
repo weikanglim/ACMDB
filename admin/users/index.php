@@ -60,6 +60,7 @@ $control->runController();
 echo Session::flash ('editSuccess');
 echo Session::flash ('addSuccess');
 if(Session::exists('errors'))echo Session::flashErrors('errors');
+if(Session::exists('error'))echo Session::flashError('error');
 
 if($control->edit()){
 	$user = DB::getInstance()->get('users_view', array('uid', '=', Input::get('edit')))->first();

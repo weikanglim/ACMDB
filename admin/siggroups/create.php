@@ -42,7 +42,8 @@ if(Input::exists('post')){
 		
 		if ($db->insert($insert_table, $fieldAndValue)) {
 			$gid = $db->query("Select currval('siggroups_gid_seq')")->first()->currval;
-			$list = strtolower(DB::getInstance()->get('siggroups_edit_view', array('gid', '=', $gid))->first());
+			$group = DB::getInstance()->get('siggroups_edit_view', array('gid', '=', $gid))->first();
+			$list = strtolower($group->title);
 			$admin_email = DB::getInstance()->get('users', array('uid', '=', $group->leader))->first()->email;
 			$admin_pw = substr(md5(uniqid()),0,8);
 			if(!addList($list, $admin_email, $admin_pw)){

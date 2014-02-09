@@ -42,9 +42,10 @@ class AdminTableController{
 					$errors = array();
 					// Deletion of mailing list.
 					if($this->edit_table == 'siggroups_edit_view'){ // Delete group mailing lists
-						$lists = strtolower(DB::getInstance()->get('siggroups_edit_view',array('gid','IN',explode(':' , Input::get('delete'))))
-								->getResults('title'));
+						$lists = DB::getInstance()->get('siggroups_edit_view',array('gid','IN',explode(':' , Input::get('delete'))))
+								->getResults('title');
 						foreach($list as $lists){
+							$list = strtolower($list);
 							if(!rmList($list)){
 								$errors[] = "Error removing mailing list for {$list}. 
 								Please remove it manually at  <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>.";
