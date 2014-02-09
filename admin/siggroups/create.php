@@ -42,12 +42,9 @@ if(Input::exists('post')){
 		
 		if ($db->insert($insert_table, $fieldAndValue)) {
 			$gid = $db->query("Select currval('siggroups_gid_seq')")->first()->currval;
-			$group = DB::getInstance()->get('siggroups_edit_view', array('gid', '=', $gid));
-			$list = $group->title;
-			$admin = DB::getInstance()->get('users', array('uid', '=', $group->leader));
-			$admin_email = $admin->email;
+			$list = strtolower(DB::getInstance()->get('siggroups_edit_view', array('gid', '=', $gid))->first());
+			$admin_email = DB::getInstance()->get('users', array('uid', '=', $group->leader))->first()->email;
 			$admin_pw = substr(md5(uniqid()),0,8);
-			$list = strtolower($list);
 			if(!addList($list, $admin_email, $admin_pw)){
 				Session::flashError('error',"Error in creating mailing list. 
 						Please create the mailing list manually at <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>");
