@@ -38,7 +38,7 @@ class Session{
 			self::delete($name);
 			return $value;
 		} else{
-			if($string !== ''){
+			if($error !== ''){
 				self::put($name, formatError($error));
 			}
 		}
