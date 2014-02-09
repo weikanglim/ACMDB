@@ -59,6 +59,7 @@ $control->runController();
 <?php 
 echo Session::flash ('editSuccess');
 echo Session::flash ('addSuccess');
+echo Session::flashError('error');
 
 if($control->edit()){
 	$user = DB::getInstance()->get('users_view', array('uid', '=', Input::get('edit')))->first();

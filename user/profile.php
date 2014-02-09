@@ -69,6 +69,20 @@ if (! $user->isLoggedIn ()) {
 			) );
 			
 			if ($validation->passed ()) {
+				// Check for changes in email
+				$oldEmail = $user->data()->email;
+				$newEmail = Input::get('email');
+				if($oldEmail != $newEmail){
+					// Remove old emails and add new emails in mailing list
+					$uid = $user->data()->uid;
+					$gids = DB::getInstance()->get('users_siggroups',array('uid','=',$uid))->getResults('gid'); // All joined groups
+					foreach($gid as $gids){	
+						$group = DB::getInstance()->get('siggroups_edit_view',array('gid','=' ,$gid))->first()->title;
+						$list = strtolower($group);
+						rmMember($oldEmail, $list);
+						addMember($newEmail, $list);
+					}
+				}
 				if ($user->update ( array (
 						'firstname' => Input::get ( 'firstname' ),
 						'lastname' => Input::get ( 'lastname' ),

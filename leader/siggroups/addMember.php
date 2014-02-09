@@ -11,6 +11,13 @@ if(Input::exists('post')){
 				'uid' => Input::get ( 'memberName' ),
 				'gid' => Session::get ( 'gid' ) 
 		) )) {
+			$member_email = DB::getInstance()->get('users',array('uid','=',Input::get ( 'memberName' )))->first()->email;
+			$list = strtolower(DB::getInstance()->get('siggroups_edit_view',array('gid' ,'=',Session::get ( 'gid' )))->first()->title);
+			if(!addMember($member_email, $list)){
+				Session::flashError("addError", "Error adding member to mailing list. 
+						Please add it manually  <a href='http://lists.ndacm.org/cgi-bin/mailman/admin/{$list}'>here</a>.");
+			}
+				
 			Session::delete('gid');
 			Session::flash ( 'addSuccess', 'The member has been added.' );
 			Redirect::to('index.php');

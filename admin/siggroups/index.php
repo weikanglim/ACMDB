@@ -46,6 +46,8 @@ $control->runController();
 <div>
 <?php echo Session::flash ('editSuccess');
 echo Session::flash ('addSuccess');
+echo Session::flashError('error');
+
 
 	echo $control->error();
 ?>

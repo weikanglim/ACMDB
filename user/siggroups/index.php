@@ -65,14 +65,33 @@ if(Input::exists('post')){
 	if(Input::get('ptoken')){
 		if(Token::check(Input::get('ptoken'), 'participate_token')){
 			if(Input::get('join')){
-				if(DB::getInstance()->insert('users_siggroups', array( 'uid' => $uid, 'gid' => Input::get('join')))){
-					Session::flash('participate', 'You have joined the group.');
-					Redirect::to(Config::get('private/SIG Groups'));
+				$gid = Input::get('join');
+				if(DB::getInstance()->insert('users_siggroups', array( 'uid' => $uid, 'gid' => $gid))){
+					$member_email = DB::getInstance()->get('users', array('uid', '=', $uid))->first()->email;
+					$list = DB::getInstance()->get('siggroups_view', array('gid', '=', $gid))->first()->group_name;
+					$list = strtolower($list);
+					if(addMember($member_email, $list)){
+						Session::flash('participate', 'You have joined the group.');
+						Redirect::to(Config::get('private/SIG Groups'));
+					} else {
+						$error = "Error adding user to mailing list. Please contact the group leader or a web administrator.";
+					}
 				}
 			} else if(Input::get('leave')){
-				if(DB::getInstance()->query("DELETE FROM USERS_SIGGROUPS WHERE UID = ? AND GID = ?", array($uid, Input::get('leave')))){					
-					if(DB::getInstance()->query("SELECT * FROM SIGGROUPS WHERE LEADER_ID = ? AND GID = ?", array($uid, Input::get('leave')))->count()){
-						DB::getInstance()->update('siggroups', array('gid', Input::get('leave')), array('leader_id' => null));
+				$gid = Input::get('leave');
+				if(DB::getInstance()->query("DELETE FROM USERS_SIGGROUPS WHERE UID = ? AND GID = ?", array($uid, $gid))){	
+					$member_email = DB::getInstance()->get('users', array('uid', '=', $uid))->first()->email;
+					$list = DB::getInstance()->get('siggroups_view', array('gid', '=', $gid))->first()->group_name;
+					$list = strtolower($list);
+					if(DB::getInstance()->query("SELECT * FROM SIGGROUPS WHERE LEADER_ID = ? AND GID = ?", array($uid, $gid))->count()){ // member is also leader
+						DB::getInstance()->update('siggroups', array('gid', $gid), array('leader_id' => null));
+						if(!rmList($list)){ // remove group mailing list
+							Session::flashError('error',"Error removing mailing list. Please remove it manually at  <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>.");
+						}
+					}  else {
+						if(!rmMember($member_email, $list)){ // remove subscriber from mailing list
+							Session::flashError('error',"Error removing user from mailing list. Please contact the group leader or a web administrator.");
+						}
 					}
 					Session::flash('participate', 'You have left the group.');
 					Redirect::to(Config::get('private/SIG Groups'));
@@ -99,6 +118,7 @@ if(Input::exists('post')){
 <div>
 <?php 
 echo Session::flash ('participate');
+echo Session::flashError('error');
 
 	if($error) echo '<div class="ui-state-error ui-corner-all">
 		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span><strong>Error:</strong> ' .$error. '</p> </div>';
@@ -111,12 +131,12 @@ echo Session::flash ('participate');
 <script>
 function confirmJoin()
 {
-return confirm("Are you sure you want to join?");
+return confirm("Are you sure you want to join? You will be added to the mailing list.");
 }
 
 function confirmLeave()
 {
-return confirm("Are you sure you want to leave?");	
+return confirm("Are you sure you want to leave? You will be removed from the mailing list.");	
 }
 </script>
 </div>

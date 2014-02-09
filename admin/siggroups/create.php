@@ -41,7 +41,19 @@ if(Input::exists('post')){
 		}
 		
 		if ($db->insert($insert_table, $fieldAndValue)) {
-			Session::flash ( 'addSuccess', 'Record added succesfully.' );
+			$assoc =$db->query("Select currval('siggroups_gid_seq')")->assoc();
+			$gid = $assoc['currval'];
+			$group = DB::getInstance()->get('siggroups_edit_view', array('gid', '=', $gid));
+			$list = $group->title;
+			$admin = DB::getInstance()->get('users', array('uid', '=', $group->leader));
+			$admin_email = $admin->email;
+			$admin_pw = substr(md5(uniqid()),0,8);
+			$list = strtolower($list);
+			if(!addList($list, $admin_email, $admin_pw)){
+				Session::flashError('error',"Error in creating mailing list. 
+						Please create the mailing list manually at <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>");
+			}
+			Session::flash ( 'addSuccess', 'SIG added succesfully.' );
 			Redirect::to("index.php");
 		} else {
 			echo 'Error in insertion.';
@@ -67,9 +79,7 @@ if(Input::exists('post')){
 <div class='long-record'>
 <h3>Add New SIG Group</h3>
 <?php 
-if($error) echo '<div class="ui-state-error ui-corner-all">
-		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
-		<strong>Error:</strong> ' .$error. '</p> </div>';
+if($error) echo formatError($error);
 ?>
 			<?php
 				 $create = new CreateForm($fields);
