@@ -31,4 +31,17 @@ class Session{
 			}
 		}
 	}
+	
+	public static function flashError($name, $error=''){
+		if(self::exists($name)){
+			$value = self::get($name);
+			self::delete($name);
+			return $value;
+		} else{
+			if($string !== ''){
+				self::put($name, formatError($error));
+			}
+		}
+	}
+	
 }
