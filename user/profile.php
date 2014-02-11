@@ -74,14 +74,7 @@ if (! $user->isLoggedIn ()) {
 				$newEmail = Input::get('email');
 				if($oldEmail != $newEmail){
 					// Remove old emails and add new emails in mailing list
-					$uid = $user->data()->uid;
-					$gids = DB::getInstance()->get('users_siggroups',array('uid','=',$uid))->getResults('gid'); // All joined groups
-					foreach($gids as $gid){	
-						$group = DB::getInstance()->get('siggroups_edit_view',array('gid','=' ,$gid))->first();
-						$list = strtolower($group->title);
-						rmMember($oldEmail, $list, false); // don't notify user
-						addMember($newEmail, $list, false);
-					}
+					cloneMember($oldEmail, $newEmail);
 				}
 				if ($user->update ( array (
 						'firstname' => Input::get ( 'firstname' ),

@@ -70,11 +70,13 @@ if(Input::exists('post')){
 					$member_email = $user->data()->email;
 					$list = DB::getInstance()->get('siggroups_view', array('gid', '=', $gid))->first()->group_name;
 					$list = strtolower($list);
-					echo $member_email;
-					echo $list;
-					if(!addMember($member_email, $list)){
-						Session::flashError('error', "Error adding user to mailing list. Please contact the group leader or a web administrator.");
-					} 
+					if(!findMember($member_email, $list)){
+						if(!addMember($member_email, $list)){
+							Session::flashError('error', "Error adding user to {$list} mailing list. Please contact the group leader or a web administrator.");
+						} 
+					} else {
+						Session::flashError('error', "The user is already in the {$list} mailing list.");
+					}
 					Session::flash('participate', 'You have joined the group.');
 					Redirect::to(Config::get('private/SIG Groups'));
 				}
@@ -92,8 +94,10 @@ if(Input::exists('post')){
 							Session::flashError('error',"Error removing mailing list. Please remove it manually at  <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>.");
 						}
 					}  else {
-						if(!rmMember($member_email, $list)){ // remove subscriber from mailing list
-							Session::flashError('error',"Error removing user from mailing list. Please contact the group leader or a web administrator.");
+						if(findMember($member_email, $list)){
+							rmMember($member_email, $list);
+						} else {
+							Session::flashError('error',"Error: The user is not in the {$list} mailing list.");
 						}
 					}
 					Session::flash('participate', 'You have left the group.');
