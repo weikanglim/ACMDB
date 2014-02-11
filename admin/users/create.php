@@ -4,20 +4,19 @@ require_once $base . "/core/init.php";
 require_once $base . "/core/admin.php";
 require_once $base . "/core/private.php";
 
-	
 $table = 'users';
 $id = 'uid';
-$edit = false;
 $error = "";
-$headers = DB::getInstance()->get('information_schema.columns', array('table_name' , '=', "{$table}"), array('column_name'))->results();
+$fields = array();
 $fields = array(
 				'username' => 'Username',
+				'password' => 'Password',
+				'password_again' => 'Confirm Password',
 				'firstname' => 'First Name',
 				'lastname' => 'Last Name',
 				'email' => 'Email',
-				'phone' => 'Phone'
+				'phone' => 'Phone',
 			);
-
 
 if(Input::exists('post')){
 	$validate = new Validate ();
@@ -30,6 +29,11 @@ if(Input::exists('post')){
 			),
 			'firstname' => array (
 					'required' => true
+			),
+			'password' => array(
+				'required' => true,
+				'min' => 6,
+				'matches' => 'password_again'
 			),
 			'lastname' => array (
 					'required' => true
@@ -51,18 +55,21 @@ if(Input::exists('post')){
 		$hashInfo = Hash::create_hash(Input::get('password'));
 		$fieldAndValue["salt"] = $hashInfo['salt'];
 		foreach($fields as $field){
-			if($field === 'password'){
-				$fieldAndValue["{$field}"] = $hashInfo['hash'];
-			} else {
-				$fieldAndValue["{$field}"] = Input::get("{$field}");
+			switch($field){
+			case 'password': $fieldAndValue["{$field}"] = $hashInfo['hash']; break;
+			case 'password_again': break;
+			case 'phone' : 
+				if(!Input::get('phone')){ break;}
+				else{ $fieldAndValue["phone"] = str_replace('-','',Input::get("phone")); }break;
+			case 'userlevel' : break;
+			default : $fieldAndValue["{$field}"] = Input::get("{$field}"); break;	
 			}
 		}
-		
 		if ($db->insert($table, $fieldAndValue)) {
-			Session::flash ( 'addSuccess', 'Record added.' );
-			Redirect::to("index.php");
+			Session::flash ("registered", 'Registration succesful.' );
+			Redirect::to($_SERVER['PHP_SELF']);
 		} else {
-			echo 'Error in insertion.';
+			$error = 'Error with registration.';
 		}
 	} else{
 		$validate_errors = $validation->errors ();
@@ -75,25 +82,24 @@ if(Input::exists('post')){
 ?>
 <html>
 <head>
-	<title>Create New User</title>
+	<title>Registration</title>
 		<link rel="stylesheet" media="all" type="text/css"
 	href="/css/jquery-ui-1.10.3.custom.css" />
+<link rel="stylesheet" type="text/css" href="/css/records.css">
 <link rel="stylesheet" type="text/css" href="/css/table.css">
-<link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
-	<link rel="stylesheet" type="text/css" href="/css/base.css"><link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
+<link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/pure-min.css">
 </head><body>
-<div class='record'>
-<h3>Add New User</h3>
-<div>
-<?php 
-echo Session::flash ('addSuccess');
-if($error) echo '<div class="ui-state-error ui-corner-all">
-		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span><strong>Error:</strong> ' .$error. '</p> </div>';?>
-</div>
+<div class='register'>
+			<?php 
+			echo Session::flash ("registered");
+			if($error) echo '<div class="ui-state-error ui-corner-all">
+		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span><strong>Error:</strong> ' .$error. '</p> </div>'; ?>
+			
 			<?php
-				 $create = new CreateForm($fields);
-				 echo $create->render();
+				$register = new RegisterForm($fields);
+				echo $register->render();
 			?>
+</div>			
 </div></body>
-</div>
 </html>

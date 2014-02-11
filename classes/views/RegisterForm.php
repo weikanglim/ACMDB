@@ -37,7 +37,8 @@ class RegisterForm extends CreateForm{
 		$output .= "<fieldset><div class='pure-controls' style='margin-top:1em'>" . 
 					$this->_footer . 
 					"<button type='reset' class='pure-button pure-button-secondary'>Reset</button></div>
-					</fieldset></form>";
+					<a class='alink' href='index.php' style='margin-left:20px'>Back</a></form></div>
+							</fieldset></form>";
 	
 		return $output;
 	}
