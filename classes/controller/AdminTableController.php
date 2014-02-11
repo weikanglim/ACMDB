@@ -55,14 +55,26 @@ class AdminTableController{
 					} else if($this->edit_table == 'users'){ // Delete subscribers from mailing lists
 						$users = DB::getInstance()->get('users',array('uid','IN',
 							explode(':' , Input::get('delete'))))->results();
-						foreach($users as $user){
-							$groups_joined = DB::getInstance()->get('users_siggroups', array('uid'), '=',$user->uid)->getResults('gid');
+						foreach($users as $user){	
 							$member_email = $user->email;
+							
+							// Delete from siggroups mailing lists
+							$groups_joined = DB::getInstance()->get('users_siggroups', array('uid'), '=',$user->uid)->getResults('gid');
 							foreach($groups_joined as $group){
 								$list = strtolower(DB::getInstance()->get('siggroups_edit_view',array('gid' ,'=',$group))->first()->title);
-								if(!rmMember($member_email, $list)){
-									$errors[] = "Error removing user {$member_email} from {$list} mailing list.
-											Please remove them manually at  <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>.";
+								if(findMember($member_email, $list)){
+									if(!rmMember($member_email, $list)){
+										$errors[] = "Error removing user {$member_email} from {$list} mailing list.
+												Please remove them manually at  <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>.";
+									}
+								}
+							}
+							
+							// Delete from members mailing list
+							if(findMember($member_email, 'members')){
+								if(!rmMember($member_email, 'members')){
+									$errors[] = "Error removing user {$member_email} from members mailing list.
+									Please remove them manually at  <a href='http://lists.ndacm.org'>http://lists.ndacm.org</a>.";
 								}
 							}
 						}
