@@ -54,6 +54,21 @@ if(Input::exists('get')){
 		if(Token::check(Input::get('delete_token' .  Input::get('gid')), 'delete_token' .  Input::get('gid'))){
 			$ids = '(' . str_replace(':', ',', Input::get('delete')) . ')';
 			if(DB::getInstance()->query("Delete from {$delete_table} WHERE UID IN {$ids} AND GID = ?", array(Input::get('gid')))){
+				$idArr = explode(':', Input::get('delete'));
+				$rmError = "";
+				foreach($idArr as $id){
+					$user = DB::getInstance()->get('users',array('uid','=',$id))->first();
+					$member_email = $user->email;
+					$list = strtolower(DB::getInstance()->get('siggroups_edit_view',array('gid' ,'=',Input::get('gid')))->first()->title);
+					if(findMember($member_email, $list)){
+						if(!rmMember($member_email, $list)){
+							$rmError .= "Error adding member to mailing list.Please add it manually  <a href='http://lists.ndacm.org/cgi-bin/mailman/admin/{$list}'>here</a>.";
+						}
+					}
+				}
+				if($rmError){
+					Session::flash("rmError", $rmError);
+				}
 				Session::flash('editSuccess', 'Members have been deleted.');
 				Redirect::to('index.php');
 			}
@@ -120,6 +135,7 @@ if(Input::exists('post')){
 echo Session::flash ('editSuccess');
 echo Session::flash ('addSuccess');
 echo Session::flashError('addError');
+echo Session::flashError("rmError");
 	if($error) echo '<div class="ui-state-error ui-corner-all">
 		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span><strong>Error:</strong> ' .$error. '</p> </div>';
 ?>
