@@ -6,7 +6,7 @@ $GLOBALS['config'] = array(
 	'postgresql' => array(
 		'host' => '127.0.0.1',
 		'username' => 'wk',
-		'password' => 'EMC^2_qVB',
+		'password' => '!PASSWORD',
 		'db' => 'ACMDB'
 	),
 	'remember' => array(
