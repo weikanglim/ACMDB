@@ -72,10 +72,8 @@ if(Input::exists('post')){
 					$list = strtolower($list);
 					if(!findMember($member_email, $list)){
 						if(!addMember($member_email, $list)){
-							Session::flashError('error', "Error adding user to {$list} mailing list. Please contact the group leader or a web administrator.");
+							Session::flashError('error', "User not added to {$list} mailing list. Please contact the group leader or a web administrator.");
 						} 
-					} else {
-						Session::flashError('error', "The user is already in the {$list} mailing list.");
 					}
 					Session::flash('participate', 'You have joined the group.');
 					Redirect::to(Config::get('private/SIG Groups'));
@@ -86,8 +84,6 @@ if(Input::exists('post')){
 					$member_email = DB::getInstance()->get('users', array('uid', '=', $uid))->first()->email;
 					$list = DB::getInstance()->get('siggroups_view', array('gid', '=', $gid))->first()->group_name;
 					$list = strtolower($list);
-					echo $member_email;
-					echo $list;
 					if(DB::getInstance()->query("SELECT * FROM SIGGROUPS WHERE LEADER_ID = ? AND GID = ?", array($uid, $gid))->count()){ // member is also leader
 						DB::getInstance()->update('siggroups', array('gid', $gid), array('leader_id' => null));
 						if(!rmList($list)){ // remove group mailing list
@@ -95,10 +91,10 @@ if(Input::exists('post')){
 						}
 					}  else {
 						if(findMember($member_email, $list)){
-							rmMember($member_email, $list);
-						} else {
-							Session::flashError('error',"Error: The user is not in the {$list} mailing list.");
-						}
+							if(!rmMember($member_email, $list)){
+								Session::flashError('error', "User not deleted from {$list} mailing list. Please contact the group leader or a web administrator.");
+							}
+						} 
 					}
 					Session::flash('participate', 'You have left the group.');
 					Redirect::to(Config::get('private/SIG Groups'));
