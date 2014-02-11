@@ -66,6 +66,12 @@ if(Input::exists('post')){
 			}
 		}
 		if ($db->insert($table, $fieldAndValue)) {
+			if(!findMember(Input::get('email'), 'members')){
+				if(!addMember(Input::get('email'), 'members')){
+					Session::flashError("listError",  "Unable to add user to members mailing list.");
+				}
+			}
+			
 			Session::flash ("registered", 'Registration succesful.' );
 			Redirect::to($_SERVER['PHP_SELF']);
 		} else {
@@ -93,6 +99,7 @@ if(Input::exists('post')){
 <div class='register'>
 			<?php 
 			echo Session::flash ("registered");
+			echo Session::flashError("listError");
 			if($error) echo '<div class="ui-state-error ui-corner-all">
 		<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span><strong>Error:</strong> ' .$error. '</p> </div>'; ?>
 			
